@@ -1,6 +1,6 @@
-# Workout Guide
+# Workout Schedule
 
-## A subtitle
+## Staying Healthy At Home
 
 
 **What will the application do?**
