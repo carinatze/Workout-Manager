@@ -25,6 +25,6 @@ active when they are feeling lazy or tired that day.
 
 ## User Stories
 - As a user, I want to be able to add a workout to my collection
-- As a user, I want to be able to view a list of all the different workout goals in my collection
-- As a user, I want to be able to select a workout goal and view the exercises in detail
-- As a user, I want to be able to select a workout and rate the difficulty of their workouts
+- As a user, I want to be able to view a list of all the different workouts in my collection
+- As a user, I want to be able to select a workout and view the exercises in detail
+- As a user, I want to be able to select a workout and set the level of the workout
