@@ -15,7 +15,7 @@ This will be beneficial for people starting out on their fitness journey and for
 plan for their workouts for the week.
 
 **Why is this project of interest to you?**
-This project is of interest to me because I want to personally be able to use this application. Since quaratine has 
+This project is of interest to me because I want to personally be able to use this application. Since quarantine has 
 begun, I noticed that I was not feeling my best mentally and physically. Thus, I decided to start investing in my 
 health. When I first started out, it was really difficult for me to get into the routine of working out by myself and 
 not in a gym with various equipment to use, where I would mainly utilize the treadmill and other weight machines. I had 
