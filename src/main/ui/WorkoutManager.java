@@ -15,7 +15,7 @@ public class WorkoutManager {
     private static final String RATE_WORKOUT_COMMAND = "rate";
     private static final String SEE_EXERCISES_COMMAND = "all";
     private static final String SEE_INCOMPLETE_EXERCISES_COMMAND = "incomplete";
-    private static final String ADD_EXERCISE_COMMAND = "add exercise";
+    private static final String ADD_EXERCISE_COMMAND = "e";
 
     private WorkoutCollection collection;
     private Scanner input;
