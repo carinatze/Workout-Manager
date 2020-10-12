@@ -23,18 +23,6 @@ public class Workout {
         this.exercises.add(exercise);
     }
 
-    // REQUIRES: exercises is not empty
-    // EFFECTS: returns all the exercises in the workout that are not completed
-    public LinkedList<Exercise> getIncompleteExercises() {
-        LinkedList<Exercise> exercisesToDo = new LinkedList<>();
-        for (int i = 0; i < exercises.size(); i++) {
-            if (!exercises.get(i).isDoneExercise()) {
-                exercisesToDo.add(exercises.get(i));
-            }
-        }
-        return exercisesToDo;
-    }
-
 
     // REQUIRES: level > 0 && < 3
     // MODIFIES: this

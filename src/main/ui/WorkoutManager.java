@@ -14,7 +14,6 @@ public class WorkoutManager {
     private static final String SELECT_WORKOUT_COMMAND = "select";
     private static final String RATE_WORKOUT_COMMAND = "rate";
     private static final String SEE_EXERCISES_COMMAND = "all";
-    private static final String SEE_INCOMPLETE_EXERCISES_COMMAND = "incomplete";
     private static final String ADD_EXERCISE_COMMAND = "e";
 
     private WorkoutCollection collection;
@@ -74,8 +73,6 @@ public class WorkoutManager {
             doAddExercise(workout);
         } else if (str.equals(SEE_EXERCISES_COMMAND)) {
             printWorkoutExercises(workout);
-        } else if (str.equals(SEE_INCOMPLETE_EXERCISES_COMMAND)) {
-            printIncompleteWorkoutExercises(workout);
         } else {
             System.out.println("Sorry, I didn't understand that command. Please try again.");
         }
@@ -100,8 +97,6 @@ public class WorkoutManager {
         System.out.println("Enter '" + RATE_WORKOUT_COMMAND + "' to rate the level of " + workout.getWorkoutName());
         System.out.println("Enter '" + ADD_EXERCISE_COMMAND + "' to add an exercise to " + workout.getWorkoutName());
         System.out.println("Enter '" + SEE_EXERCISES_COMMAND + "' to view all the exercises in "
-                + workout.getWorkoutName());
-        System.out.println("Enter '" + SEE_INCOMPLETE_EXERCISES_COMMAND + "' to view all incomplete exercises in "
                 + workout.getWorkoutName());
         processWorkoutCommand(workout);
     }
@@ -149,10 +144,6 @@ public class WorkoutManager {
 
     private void printWorkoutExercises(Workout workout) {
         System.out.println("All Exercises: " + workout.getExercises());
-    }
-
-    private void printIncompleteWorkoutExercises(Workout workout) {
-        System.out.println("All Exercises: " + workout.getIncompleteExercises());
     }
 
     private void doRateWorkout(Workout workout) {

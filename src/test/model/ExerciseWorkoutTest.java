@@ -28,7 +28,6 @@ public class ExerciseWorkoutTest {
     public void testExerciseConstructor() {
         assertEquals("exercise1", testExercise1.getExercise());
         assertEquals(1, testExercise1.getReps());
-        assertFalse(testExercise1.isDoneExercise());
     }
 
     @Test
@@ -37,21 +36,6 @@ public class ExerciseWorkoutTest {
         assertEquals("1 exercise1", testExercise1.toString());
     }
 
-    @Test
-    // checks exercise as complete
-    public void testFinished(){
-        assertFalse(testExercise1.isDoneExercise());
-        testExercise1.finished();
-        assertTrue(testExercise1.isDoneExercise());
-    }
-
-    @Test
-    // checks exercise as incomplete
-    public void testNotFinished(){
-        assertFalse(testExercise1.isDoneExercise());
-        testExercise1.notFinished();
-        assertFalse(testExercise1.isDoneExercise());
-    }
 
     @Test
     // new constructor with no exercises
@@ -83,73 +67,6 @@ public class ExerciseWorkoutTest {
         allExercises.add(testExercise1);
 
         assertEquals(3, allExercises.size());
-    }
-
-    @Test
-    // gets one incomplete exercise with it being the only exercise in the list
-    public void testGetIncompleteExercisesOnlyOneElement() {
-        testWorkout1.addExercise(testExercise1);
-        testExercise1.notFinished();
-        assertFalse(testExercise1.isDoneExercise());
-
-        LinkedList<Exercise> allExercises = new LinkedList<>();
-        allExercises.add(testExercise1);
-
-        assertEquals(allExercises, testWorkout1.getIncompleteExercises());
-    }
-
-    @Test
-    // gets one incomplete exercise in a list of two exercises
-    public void testGetIncompleteExercisesMultipleElementsOne() {
-        testWorkout1.addExercise(testExercise1);
-        testWorkout1.addExercise(testExercise2);
-
-        LinkedList<Exercise> allExercises = new LinkedList<>();
-        allExercises.add(testExercise1);
-        allExercises.add(testExercise2);
-
-        assertEquals(allExercises, testWorkout1.getExercises());
-
-        testExercise1.notFinished();
-        testExercise2.finished();
-
-        assertFalse(testExercise1.isDoneExercise());
-        assertTrue(testExercise2.isDoneExercise());
-
-        LinkedList<Exercise> notFinishedExercises = new LinkedList<>();
-        notFinishedExercises.add(testExercise1);
-
-        assertEquals(notFinishedExercises, testWorkout1.getIncompleteExercises());
-    }
-
-    @Test
-    // gets more than one incomplete exercise
-    public void testGetIncompleteExercisesMultipleElementsTwo() {
-        testWorkout1.addExercise(testExercise1);
-        testWorkout1.addExercise(testExercise2);
-        Exercise testExercise3 = new Exercise("three", 10);
-        testWorkout1.addExercise(testExercise3);
-
-        LinkedList<Exercise> allExercises = new LinkedList<>();
-        allExercises.add(testExercise1);
-        allExercises.add(testExercise2);
-        allExercises.add(testExercise3);
-
-        assertEquals(allExercises, testWorkout1.getExercises());
-
-        testExercise1.notFinished();
-        testExercise2.finished();
-        testExercise3.notFinished();
-
-        assertFalse(testExercise1.isDoneExercise());
-        assertTrue(testExercise2.isDoneExercise());
-        assertFalse(testExercise3.isDoneExercise());
-
-        LinkedList<Exercise> notFinishedExercises = new LinkedList<>();
-        notFinishedExercises.add(testExercise1);
-        notFinishedExercises.add(testExercise3);
-
-        assertEquals(notFinishedExercises, testWorkout1.getIncompleteExercises());
     }
 
     @Test
