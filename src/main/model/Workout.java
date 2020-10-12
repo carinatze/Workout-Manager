@@ -7,7 +7,7 @@ import java.util.LinkedList;
 public class Workout {
     private String workoutName;
     private String workoutLevel;
-    private final LinkedList<Exercise> exercises;
+    private LinkedList<Exercise> exercises;
 
 
     // EFFECTS: constructs a new workout with given name; sets workout level to "n/a"; exercise set to empty list

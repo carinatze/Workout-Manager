@@ -26,6 +26,7 @@ active when they are feeling lazy or tired.
 
 ## User Stories
 - As a user, I want to be able to add an exercise to my workout
+- As a user, I want to be able to add a workout to my collection
 - As a user, I want to be able to view a list of all the different exercises in my workout
 - As a user, I want to be able to view a list of exercises that have not been completed in my workout
-- As a user, I want to be able to select a workout and set the level of the workout
+- As a user, I want to be able to set the level of the workout
