@@ -2,16 +2,18 @@ package model;
 
 import java.util.ArrayList;
 
+// Represents a collection with a list of workouts
 public class WorkoutCollection {
     private final ArrayList<Workout> collection;
 
+   // MODIFIES: sets collection to empty list
     // EFFECTS: constructs an empty list of workouts
     public WorkoutCollection() {
         this.collection = new ArrayList<>();
     }
 
     // MODIFIES: this
-    // EFFECTS: adds workout to the list of workouts
+    // EFFECTS: adds workout to the list collection
     public void addWorkout(Workout workout) {
         this.collection.add(workout);
     }
@@ -21,17 +23,18 @@ public class WorkoutCollection {
         return collection.size();
     }
 
-    // EFFECTS: returns all the workouts in the collection
+    // REQUIRES: collection is not empty
+    // EFFECTS: returns the name of all the workouts in the collection
     public ArrayList<String> getListOfWorkouts() {
-        ArrayList<String> nameList = new ArrayList();
+        ArrayList<String> nameList = new ArrayList<>();
         for (int i = 0; i < collection.size(); i++) {
             nameList.add(collection.get(i).getWorkoutName());
         }
         return nameList;
     }
 
-    // REQUIRES: workouts is not empty && workoutName is in workouts
-    // EFFECTS: returns specific workout from the collection
+    // REQUIRES: collection is not empty && workoutName is an element of collection
+    // EFFECTS: returns specific workout from the collection given the workout name
     public Workout getWorkout(String workoutName) {
         for (int i = 0; i < collection.size(); i++) {
             if (workoutName.equals(collection.get(i).getWorkoutName())) {

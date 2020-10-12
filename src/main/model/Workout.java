@@ -2,15 +2,15 @@ package model;
 
 import java.util.LinkedList;
 
-// Represents a workout guide for a week having a guide name, level and exercises
+// Represents a workout guide with a workout name, level and list of exercises
 public class Workout {
     private final String workoutName;
     private String workoutLevel;
     private final LinkedList<Exercise> exercises;
 
-
-    // EFFECTS: constructs a new workout with given name; sets workout level to "n/a"; exercise set to empty list
-    // of workouts
+    // MODIFIES: this
+    // EFFECTS: constructs a new workout with given name; sets workout level to "n/a"; list of exercises set to
+    // empty list
     public Workout(String workoutName) {
         this.workoutName = workoutName;
         workoutLevel = "n/a";
@@ -18,15 +18,14 @@ public class Workout {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds exercise to the workout
+    // EFFECTS: adds the exercise to the workout
     public void addExercise(Exercise exercise) {
         this.exercises.add(exercise);
     }
 
-
-    // REQUIRES: level > 0 && < 3
+    // REQUIRES: level is one of: beginner, intermediate, or advanced
     // MODIFIES: this
-    // EFFECTS: adds level to workout, level 1 being beginner, level 2 as intermediate, and level 3 as advanced
+    // EFFECTS: sets workout level
     public void setWorkoutLevel(String level) {
         this.workoutLevel = level;
     }
@@ -36,7 +35,6 @@ public class Workout {
         return workoutLevel;
     }
 
-    // REQUIRES: exercises cannot be empty
     // EFFECTS: returns list of all the exercises for the workout
     public LinkedList<Exercise> getExercises() {
         return exercises;

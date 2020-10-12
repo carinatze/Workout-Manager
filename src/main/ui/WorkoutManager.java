@@ -9,12 +9,13 @@ import java.util.Scanner;
 // code based on TellerApp from AccountNotRobust and InfoManager from FitLifeGymChain
 // Workout manager application
 public class WorkoutManager {
-    private static final String SEE_ALL_WORKOUTS_COMMAND = "see";
+    private static final String SEE_ALL_WORKOUTS_COMMAND = "view";
     private static final String ADD_WORKOUT_COMMAND = "add";
     private static final String SELECT_WORKOUT_COMMAND = "select";
     private static final String RATE_WORKOUT_COMMAND = "rate";
-    private static final String SEE_EXERCISES_COMMAND = "all";
-    private static final String ADD_EXERCISE_COMMAND = "e";
+    private static final String SEE_EXERCISES_COMMAND = "see";
+    private static final String ADD_EXERCISE_COMMAND = "add";
+    private static final String GO_BACK_COMMAND = "back";
 
     private WorkoutCollection collection;
     private Scanner input;
@@ -63,7 +64,7 @@ public class WorkoutManager {
     }
 
     // MODIFIES: this
-    // EFFECTS: processes user command
+    // EFFECTS: processes user command after they have selected or added a new workout
     private void processWorkoutCommand(Workout workout) {
         String str = input.next();
 
@@ -73,6 +74,8 @@ public class WorkoutManager {
             doAddExercise(workout);
         } else if (str.equals(SEE_EXERCISES_COMMAND)) {
             printWorkoutExercises(workout);
+        } else if (str.equals(GO_BACK_COMMAND)) {
+            System.out.println("going back to main menu");
         } else {
             System.out.println("Sorry, I didn't understand that command. Please try again.");
         }
@@ -88,35 +91,48 @@ public class WorkoutManager {
     //EFFECTS: prints instructions to use workout manager
     private void displayMenu() {
         System.out.println("\nYou can request the following information:\n");
-        System.out.println("Enter '" + SEE_ALL_WORKOUTS_COMMAND + "' to view all workouts in the collection");
-        System.out.println("Enter '" + ADD_WORKOUT_COMMAND + "' to add a workout to the collection");
-        System.out.println("Enter '" + SELECT_WORKOUT_COMMAND + "' to select a specific workout in the collection");
+        System.out.println(SEE_ALL_WORKOUTS_COMMAND + " -> view all workouts in the collection");
+        System.out.println(ADD_WORKOUT_COMMAND + " -> add a workout to the collection");
+        System.out.println(SELECT_WORKOUT_COMMAND + " -> select a specific workout in the collection");
+        System.out.println("q -> to quit program");
     }
 
+    // EFFECTS: displays menu of options to user after they have selected or added a new workout
     private void displayWorkoutMenu(Workout workout) {
-        System.out.println("Enter '" + RATE_WORKOUT_COMMAND + "' to rate the level of " + workout.getWorkoutName());
-        System.out.println("Enter '" + ADD_EXERCISE_COMMAND + "' to add an exercise to " + workout.getWorkoutName());
-        System.out.println("Enter '" + SEE_EXERCISES_COMMAND + "' to view all the exercises in "
-                + workout.getWorkoutName());
+        System.out.println("\nChoose one of the following for your workout: " + "'" + workout.getWorkoutName() + "'\n");
+        System.out.println(RATE_WORKOUT_COMMAND + " -> rate the level of " + "'" + workout.getWorkoutName()
+                + "'");
+        System.out.println(ADD_EXERCISE_COMMAND + " -> add an exercise to " + "'" + workout.getWorkoutName()
+                + "'");
+        System.out.println(SEE_EXERCISES_COMMAND + " -> view all the exercises in " + "'" + workout.getWorkoutName()
+                + "'");
+        System.out.println(GO_BACK_COMMAND + " -> to go back to main menu ");
         processWorkoutCommand(workout);
     }
 
+    // REQUIRES: name of the exercise cannot include spaces
+    // MODIFIES: this
+    // EFFECTS: adds a new exercise to the chosen workout, with exercise name and reps
     private void doAddExercise(Workout workout) {
         System.out.println("Please enter the name of of your new exercise.");
         String str = input.next();
         if (str.length() > 0) {
-            System.out.println("Please enter the number of reps for:" + str);
+            System.out.println("Please enter the number of reps for: " + str);
             String reps = input.next();
-            Integer repsInt = Integer.parseInt(reps);
 
+            Integer repsInt = Integer.parseInt(reps);
             Exercise newExercise = new Exercise(str, repsInt);
             workout.addExercise(newExercise);
+
             System.out.println(reps + " " + str + " has been added to " + workout.getWorkoutName());
+            displayWorkoutMenu(workout);
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds a new workout to the collection
     private void doAddWorkout() {
-        System.out.println("Enter the name of your new workout");
+        System.out.println("Enter the name of your new workout:");
         String str = input.next();
 
         if (str.length() > 0) {
@@ -126,6 +142,8 @@ public class WorkoutManager {
         }
     }
 
+    // REQUIRES: workout must be in the collection
+    // EFFECTS: selects the specified workout user wishes to choose
     private void doSelectedWorkout() {
         System.out.println("Indicate which workout you wish to select: [workout name]");
         String str = input.next();
@@ -138,14 +156,20 @@ public class WorkoutManager {
         }
     }
 
+    // EFFECTS: prints all the workouts in the collection
     private void doAllWorkouts() {
         System.out.println("All Workouts: " + collection.getListOfWorkouts());
     }
 
+    // EFFECTS: prints all the exercises in the specified workout
     private void printWorkoutExercises(Workout workout) {
-        System.out.println("All Exercises: " + workout.getExercises());
+        System.out.println("All Exercises in " + "'" + workout.getWorkoutName() + "':"
+                + workout.getExercises().toString());
+        displayWorkoutMenu(workout);
     }
 
+    // MODIFIES: this
+    // EFFECTS: rates a workout with the user input
     private void doRateWorkout(Workout workout) {
         System.out.println("set " + workout.getWorkoutName() + " level as either: beginner, intermediate, or advanced");
         String str = input.next();
@@ -157,5 +181,6 @@ public class WorkoutManager {
             workout.setWorkoutLevel("advanced");
         }
         System.out.println(workout.getWorkoutName() + " has been set to level: " + str);
+        displayWorkoutMenu(workout);
     }
 }

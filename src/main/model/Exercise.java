@@ -1,19 +1,21 @@
 package model;
 
 
-// Represents an exercise with a name of the exercise and number of repetitions
+// Represents an exercise with the name of the exercise and number of repetitions of the exercise
 public class Exercise {
     private final String exercise;
     private final int reps;
 
     // REQUIRES: reps > 0
-    // EFFECTS: constructs a new exercise with the name of exercise, amount of repetitions, and not yet completed state
-    // of completion
+    // MODIFIES: this
+    // EFFECTS: constructs a new exercise with a name and number of repetitions for the exercise
     public Exercise(String exercise, int reps) {
         this.exercise = exercise;
         this.reps = reps;
     }
 
+    // REQUIRES: exercise is not empty
+    // EFFECTS: returns exercise and repetition in format: "reps exercise"
     public String toString() {
         String repsString = Integer.toString(reps);
         return repsString + " " + exercise;
