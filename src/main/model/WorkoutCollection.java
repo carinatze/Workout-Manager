@@ -1,32 +1,31 @@
 package model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class WorkoutCollection {
-    private ArrayList<Workout> workouts;
+    private final ArrayList<Workout> collection;
 
     // EFFECTS: constructs an empty list of workouts
     public WorkoutCollection() {
-        this.workouts = new ArrayList<>();
+        this.collection = new ArrayList<>();
     }
 
     // MODIFIES: this
     // EFFECTS: adds workout to the list of workouts
     public void addWorkout(Workout workout) {
-        this.workouts.add(workout);
+        this.collection.add(workout);
     }
+
     // EFFECTS: returns the amount of workouts in the collection
     public int length() {
-        return workouts.size();
+        return collection.size();
     }
 
     // EFFECTS: returns all the workouts in the collection
     public ArrayList<String> getListOfWorkouts() {
         ArrayList<String> nameList = new ArrayList();
-        for (int i = 0; i < workouts.size(); i++) {
-            nameList.add(workouts.get(i).getWorkoutName());
+        for (int i = 0; i < collection.size(); i++) {
+            nameList.add(collection.get(i).getWorkoutName());
         }
         return nameList;
     }
@@ -34,11 +33,11 @@ public class WorkoutCollection {
     // REQUIRES: workouts is not empty && workoutName is in workouts
     // EFFECTS: returns specific workout from the collection
     public Workout getWorkout(String workoutName) {
-        for (int i = 0; i < workouts.size(); i++) {
-            if (workoutName == workouts.get(i).getWorkoutName()) {
-                return workouts.get(i);
+        for (int i = 0; i < collection.size(); i++) {
+            if (workoutName.equals(collection.get(i).getWorkoutName())) {
+                return collection.get(i);
             }
         }
-        return workouts.get(0);
+        return collection.get(0);
     }
 }

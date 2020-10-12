@@ -1,13 +1,12 @@
 package model;
 
-import java.time.DayOfWeek;
 import java.util.LinkedList;
 
 // Represents a workout guide for a week having a guide name, level and exercises
 public class Workout {
-    private String workoutName;
+    private final String workoutName;
     private String workoutLevel;
-    private LinkedList<Exercise> exercises;
+    private final LinkedList<Exercise> exercises;
 
 
     // EFFECTS: constructs a new workout with given name; sets workout level to "n/a"; exercise set to empty list
@@ -29,7 +28,7 @@ public class Workout {
     public LinkedList<Exercise> getIncompleteExercises() {
         LinkedList<Exercise> exercisesToDo = new LinkedList<>();
         for (int i = 0; i < exercises.size(); i++) {
-            if (exercises.get(i).isDoneExercise() == false) {
+            if (!exercises.get(i).isDoneExercise()) {
                 exercisesToDo.add(exercises.get(i));
             }
         }
