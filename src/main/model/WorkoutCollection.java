@@ -23,11 +23,15 @@ public class WorkoutCollection {
     }
 
     // EFFECTS: returns all the workouts in the collection
-    public ArrayList<Workout> getListOfWorkouts() {
-        return workouts;
+    public ArrayList<String> getListOfWorkouts() {
+        ArrayList<String> nameList = new ArrayList();
+        for (int i = 0; i < workouts.size(); i++) {
+            nameList.add(workouts.get(i).getWorkoutName());
+        }
+        return nameList;
     }
 
-    // REQUIRES: workouts is not empty && workout is in workouts
+    // REQUIRES: workouts is not empty && workoutName is in workouts
     // EFFECTS: returns specific workout from the collection
     public Workout getWorkout(String workoutName) {
         for (int i = 0; i < workouts.size(); i++) {

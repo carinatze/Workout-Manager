@@ -175,9 +175,9 @@ public class ExerciseWorkoutTest {
         testAllWorkouts.addWorkout(testWorkout1);
         testAllWorkouts.addWorkout(testWorkout2);
 
-        ArrayList<Workout> result = new ArrayList<>();
-        result.add(testWorkout1);
-        result.add(testWorkout2);
+        ArrayList<String> result = new ArrayList<>();
+        result.add("workout");
+        result.add("workout2");
 
         assertEquals(result, testAllWorkouts.getListOfWorkouts());
         assertEquals(2, testAllWorkouts.length());
