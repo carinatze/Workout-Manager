@@ -33,8 +33,9 @@ public class WorkoutCollection {
         return nameList;
     }
 
-    // REQUIRES: collection is not empty && workoutName is an element of collection
-    // EFFECTS: returns specific workout from the collection given the workout name
+    // REQUIRES: collection is not empty
+    // EFFECTS: returns specific workout from the collection given the workout name, if workout name is not found
+    // returns the first workout in the collection
     public Workout getWorkout(String workoutName) {
         for (int i = 0; i < collection.size(); i++) {
             if (workoutName.equals(collection.get(i).getWorkoutName())) {

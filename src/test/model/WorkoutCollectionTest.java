@@ -76,6 +76,15 @@ public class WorkoutCollectionTest {
     }
 
     @Test
+    // returns the first workout in collection when given a workout that is not in collection
+    public void testGetWorkoutNone() {
+        testAllWorkouts.addWorkout(testWorkout1);
+        assertEquals(1, testAllWorkouts.length());
+
+        assertEquals(testWorkout1, testAllWorkouts.getWorkout("workout2"));
+    }
+
+    @Test
     // returns the workout in the collection with only one workout
     public void testGetWorkoutOne() {
         testAllWorkouts.addWorkout(testWorkout1);
