@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ExerciseWorkoutTest {
     private Workout testWorkout1;
     private Workout testWorkout2;
-    private AllWorkouts testAllWorkouts;
+    private WorkoutCollection testAllWorkouts;
     private Exercise testExercise1;
     private Exercise testExercise2;
 
@@ -19,7 +19,7 @@ public class ExerciseWorkoutTest {
     public void runBefore() {
         testWorkout1 = new Workout("workout");
         testWorkout2 = new Workout("workout2");
-        testAllWorkouts = new AllWorkouts();
+        testAllWorkouts = new WorkoutCollection();
         testExercise1 = new Exercise("exercise1", 1);
         testExercise2 = new Exercise("exercise2", 2);
     }

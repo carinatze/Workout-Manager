@@ -4,11 +4,11 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class AllWorkouts {
+public class WorkoutCollection {
     private ArrayList<Workout> workouts;
 
     // EFFECTS: constructs an empty list of workouts
-    public AllWorkouts() {
+    public WorkoutCollection() {
         this.workouts = new ArrayList<>();
     }
 

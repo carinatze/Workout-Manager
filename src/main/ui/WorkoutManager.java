@@ -1,5 +1,6 @@
 package ui;
 
+import model.WorkoutCollection;
 import model.Exercise;
 import model.Workout;
 
@@ -8,31 +9,30 @@ import java.util.Scanner;
 // code based on TellerApp from AccountNotRobust and InfoManager from FitLifeGymChain
 // Workout manager application
 public class WorkoutManager {
-    private static final String SEE_EXERCISES_COMMAND = "see e";
-    private static final String SEE_INCOMPLETE_EXERCISES_COMMAND = "see ie";
-    private static final String ADD_EXERCISE_COMMAND = "add e";
-    private static final String EXERCISE_NAME_COMMAND = "n";
+    private static final String SEE_ALL_WORKOUTS_COMMAND = "see";
+    private static final String ADD_WORKOUT_COMMAND = "add";
+    private static final String SELECT_WORKOUT_COMMAND = "select";
     private static final String RATE_WORKOUT_COMMAND = "rate";
-    private static final String VIEW_WORKOUT_INFO_COMMAND = "see rating";
-    private static final String QUIT_COMMAND = "quit";
+    private static final String SEE_EXERCISES_COMMAND = "all";
+    private static final String SEE_INCOMPLETE_EXERCISES_COMMAND = "incomplete";
+    private static final String ADD_EXERCISE_COMMAND = "add exercise";
 
-    private Workout workout;
+    private WorkoutCollection collection;
     private Scanner input;
-    private String workoutName;
+    private Workout workout;
 
-
-    // EFFECTS: runs the teller application
+    // EFFECTS: runs the workout manager application
     public WorkoutManager() {
-        runTeller();
+        runWorkoutManager();
     }
 
     // MODIFIES: this
     // EFFECTS: processes user input
-    private void runTeller() {
+    private void runWorkoutManager() {
         boolean keepGoing = true;
         String command = null;
 
-        init(workoutName);
+        init();
 
         while (keepGoing) {
             displayMenu();
@@ -42,53 +42,100 @@ public class WorkoutManager {
             if (command.equals("q")) {
                 keepGoing = false;
             } else {
-                processCommand(command);
+                processWorkoutCommand(command);
             }
         }
 
         System.out.println("\nGoodbye!");
     }
 
-    public void init(String workoutName) {
-        this.workout = new Workout(workoutName);
+    // MODIFIES: this
+    // EFFECTS: processes user command
+    private void processWorkoutCommand(String command) {
+        if (command.equals(SEE_ALL_WORKOUTS_COMMAND)) {
+            doAllWorkouts();
+        } else if (command.equals(SELECT_WORKOUT_COMMAND)) {
+            doSelectedWorkout();
+        } else if (command.equals(ADD_WORKOUT_COMMAND)) {
+            doAddWorkout();
+        } else {
+            System.out.println("Selection not valid...");
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: initializes workouts
+    public void init() {
+        collection = new WorkoutCollection();
         input = new Scanner(System.in);
     }
 
     //EFFECTS: prints instructions to use workout manager
     private void displayMenu() {
         System.out.println("\nYou can request the following information:\n");
+        System.out.println("Enter '" + SEE_ALL_WORKOUTS_COMMAND + "' to view all workouts in the collection");
+        System.out.println("Enter '" + ADD_WORKOUT_COMMAND + "' to add a workout to the collection");
+        System.out.println("Enter '" + SELECT_WORKOUT_COMMAND + "' to select a specific workout in the collection");
+    }
+
+    private void displayWorkoutMenu(Workout workout) {
+        System.out.println("Enter '" + RATE_WORKOUT_COMMAND + "' to rate the level of " + workout.getWorkoutName());
         System.out.println("Enter '" + ADD_EXERCISE_COMMAND + "' to add an exercise to " + workout.getWorkoutName());
         System.out.println("Enter '" + SEE_EXERCISES_COMMAND + "' to view all the exercises in "
                 + workout.getWorkoutName());
         System.out.println("Enter '" + SEE_INCOMPLETE_EXERCISES_COMMAND + "' to view all incomplete exercises in "
                 + workout.getIncompleteExercises());
-        System.out.println("Enter '" + RATE_WORKOUT_COMMAND + "' to rate the level of " + workout.getWorkoutName());
-        System.out.println("Enter '" + VIEW_WORKOUT_INFO_COMMAND + "' to view " + workout.getWorkoutName()
-                + " information.");
-        System.out.println("To quit at any time, enter '" + QUIT_COMMAND + "'.");
     }
 
-    //EFFECTS: stops receiving user input
-    public void endProgram() {
-        System.out.println("Quitting...");
-        input.close();
-    }
-
-    private void printAddExercise(Workout workout) {
-        System.out.println("Enter '" + EXERCISE_NAME_COMMAND + "' to create a new exercise");
+    private void handleExtraInfoInput(Workout workout) {
         String str = getUserInputString();
-        if (str.length() > 0 && str.equals(EXERCISE_NAME_COMMAND)) {
+
+        if (str.length() > 0) {
+            switch (str) {
+                case RATE_WORKOUT_COMMAND:
+                    printRateWorkout(workout);
+                    break;
+                case ADD_EXERCISE_COMMAND:
+                    doAddExercise(workout);
+                    break;
+                case SEE_EXERCISES_COMMAND:
+                    printWorkoutExercises(workout);
+                    break;
+                case SEE_INCOMPLETE_EXERCISES_COMMAND:
+                    printIncompleteWorkoutExercises(workout);
+                    break;
+                default:
+                    System.out.println("Sorry, I didn't understand that command. Please try again.");
+                    displayWorkoutMenu(workout);
+                    break;
+            }
+        }
+    }
+
+    private void doAddExercise(Workout workout) {
+        System.out.println("Please enter the name of of your new exercise.");
+        String str = getUserInputString();
+        if (str.length() > 0) {
             System.out.println("Please enter the number of reps for:" + str);
             String reps = getUserInputString();
-            createNewExercise(str, reps);
+            Integer repsInt = Integer.parseInt(reps);
+
+            Exercise newExercise = new Exercise(str, repsInt);
+            workout.addExercise(newExercise);
             System.out.println(reps + " " + str + " has been added to " + workout.getWorkoutName());
         }
     }
 
-    private void createNewExercise(String name, String reps) {
-        Integer repsInt = Integer.parseInt(reps);
-        Exercise newExercise = new Exercise(name, repsInt);
-        workout.addExercise(newExercise);
+    private void doAddWorkout() {
+        System.out.println("Enter the name of your new workout");
+        String str = getUserInputString();
+        Workout newWorkout = new Workout(str);
+        collection.addWorkout(newWorkout);
+        displayWorkoutMenu(newWorkout);
+    }
+
+    private void doAllWorkouts() {
+        System.out.println("All Workouts: " + collection.getListOfWorkouts());
     }
 
     private void printWorkoutExercises(Workout workout) {
@@ -103,25 +150,14 @@ public class WorkoutManager {
         System.out.println("rate " + workout.getWorkoutName() + " as either: beginner, intermediate, or advanced");
     }
 
-    private void printWorkoutInfo(Workout workout) {
-        System.out.println("Name: " + workout.getWorkoutName() + "Level: " + workout.getWorkoutLevel());
-    }
-
-    // MODIFIES: this
-    // EFFECTS: processes user command
-    private void processCommand(String command) {
-        if (command.equals(ADD_EXERCISE_COMMAND)) {
-            printAddExercise(workout);
-        } else if (command.equals(SEE_EXERCISES_COMMAND)) {
-            printWorkoutExercises(workout);
-        } else if (command.equals(SEE_INCOMPLETE_EXERCISES_COMMAND)) {
-            printIncompleteWorkoutExercises(workout);
-        } else if (command.equals(RATE_WORKOUT_COMMAND)) {
-            printRateWorkout(workout);
-        } else if (command.equals(VIEW_WORKOUT_INFO_COMMAND)) {
-            printWorkoutInfo(workout);
-        } else {
-            System.out.println("Selection not valid...");
+    private void doSelectedWorkout() {
+        String str = getUserInputString();
+        for (int i = 0; collection.length() > i; i++) {
+            if (str == collection.getWorkout(str).getWorkoutName()) {
+                System.out.println("You have selected: " + collection.getWorkout(str).getWorkoutName());
+                this.workout = collection.getWorkout(str);
+                displayWorkoutMenu(workout);
+            }
         }
     }
 
