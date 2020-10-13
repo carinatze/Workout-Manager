@@ -1,6 +1,6 @@
 # Workout Manager
 
-## Staying Healthy At Home
+## Staying Healthy and Organized
 
 
 **What will the application do?**
