@@ -2,11 +2,11 @@ package model;
 
 import java.util.ArrayList;
 
-// Represents a collection with a list of workouts
+// Represents a collection of a list of workouts
 public class WorkoutCollection {
     private final ArrayList<Workout> collection;
 
-   // MODIFIES: sets collection to empty list
+    // MODIFIES: sets workout collection as an empty list
     // EFFECTS: constructs an empty list of workouts
     public WorkoutCollection() {
         this.collection = new ArrayList<>();
@@ -24,7 +24,7 @@ public class WorkoutCollection {
     }
 
     // REQUIRES: collection is not empty
-    // EFFECTS: returns the name of all the workouts in the collection
+    // EFFECTS: returns the names of all the workouts in the collection
     public ArrayList<String> getListOfWorkouts() {
         ArrayList<String> nameList = new ArrayList<>();
         for (int i = 0; i < collection.size(); i++) {
@@ -35,7 +35,7 @@ public class WorkoutCollection {
 
     // REQUIRES: collection is not empty
     // EFFECTS: returns specific workout from the collection given the workout name, if workout name is not found
-    // returns the first workout in the collection
+    // returns the first workout name in the collection
     public Workout getWorkout(String workoutName) {
         for (int i = 0; i < collection.size(); i++) {
             if (workoutName.equals(collection.get(i).getWorkoutName())) {

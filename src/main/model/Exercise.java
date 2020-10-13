@@ -1,6 +1,5 @@
 package model;
 
-
 // Represents an exercise with the name of the exercise and number of repetitions of the exercise
 public class Exercise {
     private final String exercise;
@@ -15,7 +14,7 @@ public class Exercise {
     }
 
     // REQUIRES: exercise is not empty
-    // EFFECTS: returns exercise and repetition in format: "reps exercise"
+    // EFFECTS: returns exercise and repetition of exercises in format: "reps exercise"
     public String toString() {
         String repsString = Integer.toString(reps);
         return repsString + " " + exercise;

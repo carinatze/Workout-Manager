@@ -82,7 +82,7 @@ public class WorkoutManager {
     }
 
     // MODIFIES: this
-    // EFFECTS: initializes workouts
+    // EFFECTS: initializes workout collection
     public void init() {
         collection = new WorkoutCollection();
         input = new Scanner(System.in);

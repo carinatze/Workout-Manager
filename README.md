@@ -1,4 +1,4 @@
-# Workout Schedule
+# Workout Manager
 
 ## Staying Healthy At Home
 
