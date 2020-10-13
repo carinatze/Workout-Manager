@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 // Represents a collection of a list of workouts
 public class WorkoutCollection {
-    private final ArrayList<Workout> collection;
+    private ArrayList<Workout> collection;
 
     // MODIFIES: sets workout collection as an empty list
     // EFFECTS: constructs an empty list of workouts

@@ -2,8 +2,8 @@ package model;
 
 // Represents an exercise with the name of the exercise and number of repetitions of the exercise
 public class Exercise {
-    private final String exercise;
-    private final int reps;
+    private String exercise;
+    private int reps;
 
     // REQUIRES: reps > 0
     // MODIFIES: this

@@ -4,9 +4,9 @@ import java.util.LinkedList;
 
 // Represents a workout guide with a workout name, level and list of exercises
 public class Workout {
-    private final String workoutName;
+    private String workoutName;
     private String workoutLevel;
-    private final LinkedList<Exercise> exercises;
+    private LinkedList<Exercise> exercises;
 
     // MODIFIES: this
     // EFFECTS: constructs a new workout with given name; sets workout level to "n/a"; list of exercises set to
