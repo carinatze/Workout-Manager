@@ -86,6 +86,7 @@ public class WorkoutManager {
     public void init() {
         collection = new WorkoutCollection();
         input = new Scanner(System.in);
+        input.useDelimiter("\n");
     }
 
     //EFFECTS: prints instructions to use workout manager
@@ -110,12 +111,12 @@ public class WorkoutManager {
         processWorkoutCommand(workout);
     }
 
-    // REQUIRES: name of the exercise cannot include spaces
     // MODIFIES: this
     // EFFECTS: adds a new exercise to the chosen workout, with exercise name and reps
     private void doAddExercise(Workout workout) {
         System.out.println("Please enter the name of of your new exercise.");
         String str = input.next();
+
         if (str.length() > 0) {
             System.out.println("Please enter the number of reps for: " + str);
             String reps = input.next();
