@@ -3,9 +3,15 @@ package ui;
 import model.WorkoutCollection;
 import model.Exercise;
 import model.Workout;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
+// code based on WorkRoomApp from JsonSerializationDemo
 // code based on TellerApp from AccountNotRobust and InfoManager from FitLifeGymChain
 // Workout manager application
 public class WorkoutManager {
@@ -17,12 +23,19 @@ public class WorkoutManager {
     private static final String ADD_EXERCISE_COMMAND = "add";
     private static final String GO_BACK_COMMAND = "back";
 
+    private static final String JSON_STORE = "./data/workroom.json";
     private WorkoutCollection collection;
     private Scanner input;
     private Workout workout;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the workout manager application
-    public WorkoutManager() {
+    public WorkoutManager() throws FileNotFoundException {
+        input = new Scanner(System.in);
+        workout = new Workout("new workout");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runWorkoutManager();
     }
 
@@ -183,5 +196,28 @@ public class WorkoutManager {
         }
         System.out.println(workout.getWorkoutName() + " has been set to level: " + str);
         displayWorkoutMenu(workout);
+    }
+
+    // EFFECTS: saves the workout to file
+    private void saveWorkout() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(workout);
+            jsonWriter.close();
+            System.out.println("Saved " + workout.getWorkoutName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workout from file
+    private void loadWorkout() {
+        try {
+            workout = jsonReader.read();
+            System.out.println("Loaded " + workout.getWorkoutName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 }

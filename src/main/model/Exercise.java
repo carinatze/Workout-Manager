@@ -1,7 +1,11 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
+// code modified from Thingy in JsonSerializationDemo
 // Represents an exercise with the name of the exercise and number of repetitions of the exercise
-public class Exercise {
+public class Exercise implements Writable {
     private String exercise;
     private int reps;
 
@@ -30,4 +34,11 @@ public class Exercise {
         return exercise;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("exercise", exercise);
+        json.put("reps", reps);
+        return json;
+    }
 }

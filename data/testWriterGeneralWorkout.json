@@ -1,0 +1,14 @@
+{
+    "exercises": [
+        {
+            "reps": 2,
+            "exercise": "abs"
+        },
+        {
+            "reps": 4,
+            "exercise": "butt"
+        }
+    ],
+    "level": "beginner",
+    "name": "My workout"
+}

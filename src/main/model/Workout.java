@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.LinkedList;
 
 // Represents a workout guide with a workout name, level and list of exercises
-public class Workout {
+public class Workout implements Writable {
     private String workoutName;
     private String workoutLevel;
     private LinkedList<Exercise> exercises;
@@ -43,5 +47,25 @@ public class Workout {
     // EFFECTS: returns name of the workout
     public String getWorkoutName() {
         return workoutName;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name",workoutName);
+        json.put("level", workoutLevel);
+        json.put("exercises", exercisesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns exercises in this workout as a JSON array
+    private JSONArray exercisesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Exercise t : exercises) {
+            jsonArray.put(t.toJson());
+        }
+
+        return jsonArray;
     }
 }
