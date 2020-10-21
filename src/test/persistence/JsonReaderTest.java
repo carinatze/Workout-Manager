@@ -57,8 +57,8 @@ class JsonReaderTest extends JsonTest {
             assertEquals("My workout collection", wc.getName());
             List<Workout> workouts = wc.getWorkouts();
             assertEquals(2, workouts.size());
-            checkWorkout("workout1", "beginner", workouts.get(0));
-            checkWorkout("workout2","advanced", workouts.get(1));
+            checkWorkout("workout1", workouts.get(0));
+            checkWorkout("workout2",workouts.get(1));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }

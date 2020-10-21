@@ -14,8 +14,7 @@ public class JsonTest {
         assertEquals(reps, exercise.getReps());
     }
 
-    protected void checkWorkout(String name, String level, Workout workout) {
+    protected void checkWorkout(String name, Workout workout) {
         assertEquals(name, workout.getWorkoutName());
-        assertEquals(level, workout.getWorkoutLevel());
     }
 }

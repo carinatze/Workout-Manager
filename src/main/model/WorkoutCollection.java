@@ -30,8 +30,6 @@ public class WorkoutCollection implements Writable {
         collection.add(workout);
     }
 
-    //
-    // REQUIRES: collection is not empty
     // EFFECTS: returns the names of all the workouts in the collection
     public ArrayList<String> getListOfWorkouts() {
         ArrayList<String> nameList = new ArrayList<>();
@@ -41,7 +39,7 @@ public class WorkoutCollection implements Writable {
         return nameList;
     }
 
-    // EFFECTS: returns an unmodifiable list of thingies in this workroom
+    // EFFECTS: returns an unmodifiable list of workouts in this collection
     public List<Workout> getWorkouts() {
         return Collections.unmodifiableList(collection);
     }
@@ -53,7 +51,7 @@ public class WorkoutCollection implements Writable {
 
     // REQUIRES: collection is not empty
     // EFFECTS: returns specific workout from the collection given the workout name, if workout name is not found
-    // returns the first workout name in the collection
+    //          returns the first workout name in the collection
     public Workout getWorkout(String workoutName) {
         for (int i = 0; i < collection.size(); i++) {
             if (workoutName.equals(collection.get(i).getWorkoutName())) {
@@ -67,6 +65,7 @@ public class WorkoutCollection implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
+        json.put("name",name);
         json.put("workouts", workoutsToJson());
         return json;
     }

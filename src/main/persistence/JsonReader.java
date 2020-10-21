@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 import model.WorkoutCollection;
 import org.json.*;
 
-// code modified from JasonReader in JsonSerializationDemo
+// code from JasonReader in JsonSerializationDemo
 // Represents a reader that reads workout from JSON data stored in file
 public class JsonReader {
     private String source;
@@ -54,6 +54,7 @@ public class JsonReader {
         String name = jsonObject.getString("name");
         Workout w = new Workout(name);
         addExercises(w, jsonObject);
+        parseWorkoutLevel(w, jsonObject);
         return w;
     }
 
@@ -68,7 +69,6 @@ public class JsonReader {
     // EFFECTS: parses workout level from JSON object and returns it
     private void parseWorkoutLevel(Workout w, JSONObject jsonObject) {
         String level = jsonObject.getString("level");
-        System.out.println(jsonObject.getString("level"));
         w.setWorkoutLevel(level);
     }
 
@@ -104,8 +104,6 @@ public class JsonReader {
     // EFFECTS: parses exercise from JSON object and adds it to workout
     private void addExercise(Workout w, JSONObject jsonObject) {
         String exerciseName = jsonObject.getString("exercise");
-//        System.out.println(jsonObject);
-//        System.out.println(jsonObject.get("reps"));
         int reps = (int) jsonObject.get("reps");
         Exercise exercise = new Exercise(exerciseName, reps);
         w.addExercise(exercise);

@@ -8,7 +8,6 @@ import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 
 // code based on WorkRoomApp from JsonSerializationDemo
@@ -56,7 +55,7 @@ public class WorkoutManager {
             if (command.equals("q")) {
                 keepGoing = false;
             } else {
-                processWorkoutCommand(command);
+                processCommand(command);
             }
         }
 
@@ -65,13 +64,13 @@ public class WorkoutManager {
 
     // MODIFIES: this
     // EFFECTS: processes user command
-    private void processWorkoutCommand(String command) {
+    private void processCommand(String command) {
         if (command.equals(PRINT_WORKOUTS_COMMAND)) {
             printWorkouts();
         } else if (command.equals(SELECT_WORKOUT_COMMAND)) {
-            doSelectedWorkout();
+            selectWorkout();
         } else if (command.equals(ADD_WORKOUT_COMMAND)) {
-            doAddWorkout();
+            addWorkout();
         } else if (command.equals("l")) {
             loadCollection();
         } else if (command.equals("s")) {
@@ -87,9 +86,9 @@ public class WorkoutManager {
         String str = input.next();
 
         if (str.equals(RATE_WORKOUT_COMMAND)) {
-            doRateWorkout(workout);
+            rateWorkout(workout);
         } else if (str.equals(ADD_EXERCISE_COMMAND)) {
-            doAddExercise(workout);
+            addExercise(workout);
         } else if (str.equals(PRINT_EXERCISES_COMMAND)) {
             printWorkoutExercises(workout);
         } else if (str.equals(GO_BACK_COMMAND)) {
@@ -131,14 +130,15 @@ public class WorkoutManager {
                 + "'");
         System.out.println(PRINT_EXERCISES_COMMAND + " -> print exercises in " + "'" + workout.getWorkoutName()
                 + "'");
-        System.out.println("s -> save exercises to workout file");
+        System.out.println("s -> save workout to file");
+        System.out.println("l -> load workout from file");
         System.out.println(GO_BACK_COMMAND + " -> to go back to main menu ");
         processWorkoutCommand(workout);
     }
 
     // MODIFIES: this
     // EFFECTS: adds a new exercise to the chosen workout, with exercise name and reps
-    private void doAddExercise(Workout workout) {
+    private void addExercise(Workout workout) {
         System.out.println("Please enter the name of of your new exercise.");
         String str = input.next();
 
@@ -157,7 +157,7 @@ public class WorkoutManager {
 
     // MODIFIES: this
     // EFFECTS: adds a new workout to the collection
-    private void doAddWorkout() {
+    private void addWorkout() {
         System.out.println("Please enter the name of your new workout:");
         String str = input.next();
 
@@ -170,7 +170,7 @@ public class WorkoutManager {
 
     // REQUIRES: workout must be in the collection
     // EFFECTS: selects the specified workout user wishes to choose
-    private void doSelectedWorkout() {
+    private void selectWorkout() {
         System.out.println("Indicate which workout you wish to select: [workout name]");
         String str = input.next();
         for (int i = 0; collection.numWorkouts() > i; i++) {
@@ -184,12 +184,12 @@ public class WorkoutManager {
 
     // EFFECTS: prints all the workouts in the collection
     private void printWorkouts() {
-        //System.out.println("All Workouts: " + collection.getListOfWorkouts());
-        List<Workout> workouts = collection.getWorkouts();
-
-        for (Workout w : workouts) {
-            System.out.println(w);
-        }
+        System.out.println("All Workouts: " + collection.getListOfWorkouts());
+//        List<Workout> workouts = collection.getWorkouts();
+//
+//        for (Workout w : workouts) {
+//            System.out.println(w);
+//        }
     }
 
     // EFFECTS: prints all the exercises in the specified workout
@@ -202,7 +202,7 @@ public class WorkoutManager {
 
     // MODIFIES: this
     // EFFECTS: rates a workout with the user input
-    private void doRateWorkout(Workout workout) {
+    private void rateWorkout(Workout workout) {
         System.out.println("set " + workout.getWorkoutName() + " level as either: beginner, intermediate, or advanced");
         String str = input.next();
         if (str.equals("beginner")) {
