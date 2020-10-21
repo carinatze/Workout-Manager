@@ -1,28 +1,36 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 // Represents a collection of a list of workouts
-public class WorkoutCollection {
-    private ArrayList<Workout> collection;
+public class WorkoutCollection implements Writable {
+    private String name;
+    private List<Workout> collection;
 
     // MODIFIES: sets workout collection as an empty list
     // EFFECTS: constructs an empty list of workouts
-    public WorkoutCollection() {
+    public WorkoutCollection(String collectionName) {
+        this.name = collectionName;
         this.collection = new ArrayList<>();
+    }
+
+    public String getName() {
+        return name;
     }
 
     // MODIFIES: this
     // EFFECTS: adds workout to the list collection
     public void addWorkout(Workout workout) {
-        this.collection.add(workout);
+        collection.add(workout);
     }
 
-    // EFFECTS: returns the amount of workouts in the collection
-    public int length() {
-        return collection.size();
-    }
-
+    //
     // REQUIRES: collection is not empty
     // EFFECTS: returns the names of all the workouts in the collection
     public ArrayList<String> getListOfWorkouts() {
@@ -31,6 +39,16 @@ public class WorkoutCollection {
             nameList.add(collection.get(i).getWorkoutName());
         }
         return nameList;
+    }
+
+    // EFFECTS: returns an unmodifiable list of thingies in this workroom
+    public List<Workout> getWorkouts() {
+        return Collections.unmodifiableList(collection);
+    }
+
+    // EFFECTS: returns the amount of workouts in the collection
+    public int numWorkouts() {
+        return collection.size();
     }
 
     // REQUIRES: collection is not empty
@@ -43,5 +61,24 @@ public class WorkoutCollection {
             }
         }
         return collection.get(0);
+    }
+
+    // code from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("workouts", workoutsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns workouts in this collection as a JSON array
+    private JSONArray workoutsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Workout w : collection) {
+            jsonArray.put(w.toJson());
+        }
+
+        return jsonArray;
     }
 }

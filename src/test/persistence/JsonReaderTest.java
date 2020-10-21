@@ -10,24 +10,25 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// code from JsonReaderTest in JsonSerializationDemo
+// code from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 class JsonReaderTest extends JsonTest {
 
     @Test
     void testReaderNonExistentFile() {
         JsonReader reader = new JsonReader("./data/noSuchFile.json");
         try {
-            Workout w = reader.read();
+            Workout w = reader.readW();
             fail("IOException expected");
         } catch (IOException e) {
             // pass
         }
     }
+
     @Test
     void testReaderEmptyWorkout() {
         JsonReader reader = new JsonReader("./data/testReaderEmptyWorkout.json");
         try {
-            Workout w = reader.read();
+            Workout w = reader.readW();
             assertEquals("My workout", w.getWorkoutName());
             assertEquals("n/a", w.getWorkoutLevel());
             assertEquals(0, w.getExercises().size());
@@ -37,10 +38,37 @@ class JsonReaderTest extends JsonTest {
     }
 
     @Test
+    void testReaderEmptyWorkoutCollection() {
+        JsonReader reader = new JsonReader("./data/testReaderEmptyWorkoutCollection.json");
+        try {
+            WorkoutCollection wc = reader.readC();
+            assertEquals("My workout collection", wc.getName());
+            assertEquals(0, wc.getWorkouts().size());
+        } catch (IOException e) {
+            fail("Couldn't read from file");
+        }
+    }
+
+    @Test
+    void testReaderGeneralWorkoutCollection() {
+        JsonReader reader = new JsonReader("./data/testReaderGeneralWorkoutCollection.json");
+        try {
+            WorkoutCollection wc = reader.readC();
+            assertEquals("My workout collection", wc.getName());
+            List<Workout> workouts = wc.getWorkouts();
+            assertEquals(2, workouts.size());
+            checkWorkout("workout1", "beginner", workouts.get(0));
+            checkWorkout("workout2","advanced", workouts.get(1));
+        } catch (IOException e) {
+            fail("Couldn't read from file");
+        }
+    }
+
+    @Test
     void testReaderGeneralWorkout() {
         JsonReader reader = new JsonReader("./data/testReaderGeneralWorkout.json");
         try {
-            Workout w = reader.read();
+            Workout w = reader.readW();
             assertEquals("My workout", w.getWorkoutName());
             assertEquals("advanced", w.getWorkoutLevel());
             List<Exercise> exercises = w.getExercises();

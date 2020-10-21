@@ -1,6 +1,7 @@
 package persistence;
 
 import model.Workout;
+import model.WorkoutCollection;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -22,6 +23,13 @@ public class JsonWriter {
     // be opened for writing
     public void open() throws FileNotFoundException {
         writer = new PrintWriter(new File(destination));
+    }
+
+    // MODIFIES: this
+    // EFFECTS: writes JSON representation of workout collection to file
+    public void write(WorkoutCollection wc) {
+        JSONObject json = wc.toJson();
+        saveToFile(json.toString(TAB));
     }
 
     // MODIFIES: this

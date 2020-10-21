@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
+import java.util.List;
 import java.util.LinkedList;
 
 // Represents a workout guide with a workout name, level and list of exercises
@@ -49,6 +50,7 @@ public class Workout implements Writable {
         return workoutName;
     }
 
+    //code from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -62,8 +64,8 @@ public class Workout implements Writable {
     private JSONArray exercisesToJson() {
         JSONArray jsonArray = new JSONArray();
 
-        for (Exercise t : exercises) {
-            jsonArray.put(t.toJson());
+        for (Exercise e : exercises) {
+            jsonArray.put(e.toJson());
         }
 
         return jsonArray;
