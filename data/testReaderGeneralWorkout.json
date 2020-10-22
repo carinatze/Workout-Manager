@@ -1,14 +1,19 @@
 {
-  "exercises": [
+  "workouts": [
     {
-      "exercise": "abs",
-      "reps": 2
-    },
-    {
-      "exercise": "butt",
-      "reps": 3
+      "exercises": [
+        {
+          "exercise": "abs",
+          "reps": 2
+        },
+        {
+          "exercise": "butt",
+          "reps": 3
+        }
+      ],
+      "level": "advanced",
+      "name": "My workout"
     }
-  ],
-  "level": "advanced",
-  "name": "My workout"
+  ]
 }
+

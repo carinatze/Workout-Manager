@@ -143,16 +143,17 @@ public class WorkoutManager {
     // EFFECTS: adds a new exercise to the chosen workout, with exercise name and reps
     private void addExercise(Workout workout) {
         System.out.println("Please enter the name of of your new exercise.");
-        String exerciseName = input.next();
+        String str = input.next();
 
-        if (exerciseName.length() > 0) {
-            System.out.println("Please enter the number of reps for: " + exerciseName);
+        if (str.length() > 0) {
+            System.out.println("Please enter the number of reps for: " + str);
             String reps = input.next();
 
             Integer repsInt = Integer.parseInt(reps);
-            workout.addExercise(new Exercise(exerciseName, repsInt));
+            Exercise newExercise = new Exercise(str, repsInt);
+            workout.addExercise(newExercise);
 
-            System.out.println(reps + " " + exerciseName + " has been added to " + workout.getWorkoutName());
+            System.out.println(reps + " " + str + " has been added to " + workout.getWorkoutName());
             displayWorkoutMenu(workout);
         }
     }
@@ -161,10 +162,10 @@ public class WorkoutManager {
     // EFFECTS: adds a new workout to the collection
     private void addWorkout() {
         System.out.println("Please enter the name of your new workout:");
-        String workoutName = input.next();
+        String str = input.next();
 
-        if (workoutName.length() > 0) {
-            Workout newWorkout = new Workout(workoutName);
+        if (str.length() > 0) {
+            Workout newWorkout = new Workout(str);
             collection.addWorkout(newWorkout);
             displayWorkoutMenu(newWorkout);
         }
@@ -174,11 +175,13 @@ public class WorkoutManager {
     // EFFECTS: selects the specified workout user wishes to choose
     private void selectWorkout() {
         System.out.println("Indicate which workout you wish to select: [workout name]");
-        String workoutName = input.next();
-        if (collection.isWorkoutInCollection(workoutName)) {
-            System.out.println("You have selected: " + workoutName);
-            this.workout = collection.getWorkout(workoutName);
-            displayWorkoutMenu(workout);
+        String str = input.next();
+        for (int i = 0; collection.numWorkouts() > i; i++) {
+            if (str.equals(collection.getWorkout(str).getWorkoutName())) {
+                System.out.println("You have selected: " + collection.getWorkout(str).getWorkoutName());
+                this.workout = collection.getWorkout(str);
+                displayWorkoutMenu(workout);
+            }
         }
     }
 
@@ -190,7 +193,7 @@ public class WorkoutManager {
     // EFFECTS: prints all exercises that are loaded from file in the workout
     private void printLoadedExercises() {
         try {
-            workout = jsonReader.readWorkout();
+            workout = jsonReader.readW();
             System.out.println("All Exercises :" + workout.getExercises());
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
@@ -209,9 +212,15 @@ public class WorkoutManager {
     // EFFECTS: rates a workout with the user input
     private void rateWorkout(Workout workout) {
         System.out.println("set " + workout.getWorkoutName() + " level as either: beginner, intermediate, or advanced");
-        String level = input.next();
-        workout.setWorkoutLevel(level);
-        System.out.println(workout.getWorkoutName() + " has been set to level: " + level);
+        String str = input.next();
+        if (str.equals("beginner")) {
+            workout.setWorkoutLevel("beginner");
+        } else if (str.equals("intermediate")) {
+            workout.setWorkoutLevel("intermediate");
+        } else {
+            workout.setWorkoutLevel("advanced");
+        }
+        System.out.println(workout.getWorkoutName() + " has been set to level: " + str);
         displayWorkoutMenu(workout);
     }
 
@@ -233,7 +242,7 @@ public class WorkoutManager {
     // EFFECTS: loads workout from file
     private void loadWorkout() {
         try {
-            workout = jsonReader.readWorkout();
+            workout = jsonReader.readW();
             System.out.println("Loaded '" + workout.getWorkoutName() + "' from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
@@ -256,7 +265,7 @@ public class WorkoutManager {
     // EFFECTS: loads collection from file
     private void loadCollection() {
         try {
-            collection = jsonReader.readCollection();
+            collection = jsonReader.readC();
             System.out.println("Loaded '" + collection.getName() + "' from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);

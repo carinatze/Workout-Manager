@@ -3,7 +3,7 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
-// code from
+// code from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 // Represents an exercise with the name of the exercise and number of repetitions of the exercise
 public class Exercise implements Writable {
     private String exercise;

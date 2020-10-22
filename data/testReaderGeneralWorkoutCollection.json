@@ -9,5 +9,5 @@
       "exercises" : []
     }
   ],
-  "Collection": "My workout collection"
+  "name": "My workout collection"
 }
