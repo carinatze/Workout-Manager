@@ -22,6 +22,7 @@ public class WorkoutCollectionTest {
     @Test
     // adds workout to the collection
     public void testWorkoutCollectionConstructor() {
+        assertEquals("collection", testAllWorkouts.getName());
         assertEquals(0, testAllWorkouts.numWorkouts());
         testAllWorkouts.addWorkout(testWorkout1);
         assertEquals(testWorkout1, testAllWorkouts.getWorkout("workout"));
@@ -33,6 +34,7 @@ public class WorkoutCollectionTest {
         assertEquals(0, testAllWorkouts.numWorkouts());
         testAllWorkouts.addWorkout(testWorkout1);
         assertEquals(1, testAllWorkouts.numWorkouts());
+        assertEquals(1, testAllWorkouts.getWorkouts().size());
     }
 
     @Test

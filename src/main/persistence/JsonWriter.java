@@ -6,7 +6,7 @@ import org.json.JSONObject;
 
 import java.io.*;
 
-// code modified from JsonWriter in JsonSerializationDemo
+// code from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 // Represents a writer that writes JSON representation of workout to file
 public class JsonWriter {
     private static final int TAB = 4;

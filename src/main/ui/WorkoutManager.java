@@ -10,7 +10,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-// code based on WorkRoomApp from JsonSerializationDemo
 // code based on TellerApp from AccountNotRobust and InfoManager from FitLifeGymChain
 // Workout manager application
 public class WorkoutManager {
@@ -97,6 +96,8 @@ public class WorkoutManager {
             saveWorkout();
         } else if (str.equals("l")) {
             loadWorkout();
+        } else if (str.equals("pl")) {
+            printLoadedExercises();
         } else {
             System.out.println("Sorry, I didn't understand that command. Please try again.");
         }
@@ -129,6 +130,8 @@ public class WorkoutManager {
         System.out.println(ADD_EXERCISE_COMMAND + " -> add an exercise to " + "'" + workout.getWorkoutName()
                 + "'");
         System.out.println(PRINT_EXERCISES_COMMAND + " -> print exercises in " + "'" + workout.getWorkoutName()
+                + "'");
+        System.out.println("pl" + " -> print loaded exercises in " + "'" + workout.getWorkoutName()
                 + "'");
         System.out.println("s -> save workout to file");
         System.out.println("l -> load workout from file");
@@ -185,11 +188,16 @@ public class WorkoutManager {
     // EFFECTS: prints all the workouts in the collection
     private void printWorkouts() {
         System.out.println("All Workouts: " + collection.getListOfWorkouts());
-//        List<Workout> workouts = collection.getWorkouts();
-//
-//        for (Workout w : workouts) {
-//            System.out.println(w);
-//        }
+    }
+
+    // EFFECTS: prints all exercises that are loaded from file in the workout
+    private void printLoadedExercises() {
+        try {
+            workout = jsonReader.readW();
+            System.out.println("All Exercises :" + workout.getExercises());
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 
     // EFFECTS: prints all the exercises in the specified workout
@@ -215,6 +223,8 @@ public class WorkoutManager {
         System.out.println(workout.getWorkoutName() + " has been set to level: " + str);
         displayWorkoutMenu(workout);
     }
+
+    // code from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 
     // EFFECTS: saves the workout to file
     private void saveWorkout() {

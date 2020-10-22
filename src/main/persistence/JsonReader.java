@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 import model.WorkoutCollection;
 import org.json.*;
 
-// code from JasonReader in JsonSerializationDemo
+// code from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 // Represents a reader that reads workout from JSON data stored in file
 public class JsonReader {
     private String source;
@@ -22,20 +22,20 @@ public class JsonReader {
         this.source = source;
     }
 
+    // EFFECTS: reads workout collection from file and returns it;
+    // throws IOException if an error occurs reading data from file
+    public WorkoutCollection readC() throws IOException {
+        String jsonData = readFile(source);
+        JSONObject jsonObject = new JSONObject(jsonData);
+        return parseWorkoutCollection(jsonObject);
+    }
+
     // EFFECTS: reads workout from file and returns it;
     // throws IOException if an error occurs reading data from file
     public Workout readW() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return parseWorkout(jsonObject);
-    }
-
-    // EFFECTS: reads workout from file and returns it;
-    // throws IOException if an error occurs reading data from file
-    public WorkoutCollection readC() throws IOException {
-        String jsonData = readFile(source);
-        JSONObject jsonObject = new JSONObject(jsonData);
-        return parseWorkoutCollection(jsonObject);
     }
 
     // EFFECTS: reads source file as string and returns it
@@ -54,8 +54,14 @@ public class JsonReader {
         String name = jsonObject.getString("name");
         Workout w = new Workout(name);
         addExercises(w, jsonObject);
-        parseWorkoutLevel(w, jsonObject);
+        //parseWorkoutLevel(w, jsonObject);
         return w;
+    }
+
+    // EFFECTS: parses workout level from JSON object and returns it
+    private void parseWorkoutLevel(Workout w, JSONObject jsonObject) {
+        String level = jsonObject.getString("level");
+        w.setWorkoutLevel(level);
     }
 
     // EFFECTS: parses workout collection from JSON object and returns it
@@ -64,12 +70,6 @@ public class JsonReader {
         WorkoutCollection wc = new WorkoutCollection(name);
         addWorkouts(wc, jsonObject);
         return wc;
-    }
-
-    // EFFECTS: parses workout level from JSON object and returns it
-    private void parseWorkoutLevel(Workout w, JSONObject jsonObject) {
-        String level = jsonObject.getString("level");
-        w.setWorkoutLevel(level);
     }
 
     // MODIFIES: wc
@@ -93,10 +93,16 @@ public class JsonReader {
     // MODIFIES: w
     // EFFECTS: parses exercises from JSON object and adds them to workout
     private void addExercises(Workout w, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("exercises");
+        JSONArray jsonArray = jsonObject.getJSONArray("workouts");
         for (Object json : jsonArray) {
-            JSONObject nextExercise = (JSONObject) json;
-            addExercise(w, nextExercise);
+            JSONObject exercises = (JSONObject)json;
+            JSONObject workout = (JSONObject)json;
+            String level = workout.getString("level");
+            w.setWorkoutLevel(level);
+            for (Object json1 : exercises.getJSONArray("exercises")) {
+                JSONObject nextExercise = (JSONObject) json1;
+                addExercise(w, nextExercise);
+            }
         }
     }
 
