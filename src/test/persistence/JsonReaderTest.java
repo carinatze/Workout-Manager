@@ -17,7 +17,7 @@ class JsonReaderTest extends JsonTest {
     void testReaderNonExistentFile() {
         JsonReader reader = new JsonReader("./data/noSuchFile.json");
         try {
-            Workout w = reader.readW();
+            Workout w = reader.readWorkout();
             fail("IOException expected");
         } catch (IOException e) {
             // pass
@@ -28,7 +28,7 @@ class JsonReaderTest extends JsonTest {
     void testReaderEmptyWorkout() {
         JsonReader reader = new JsonReader("./data/testReaderEmptyWorkout.json");
         try {
-            Workout w = reader.readW();
+            Workout w = reader.readWorkout();
             assertEquals("My workout", w.getWorkoutName());
             assertEquals("n/a", w.getWorkoutLevel());
             assertEquals(0, w.getExercises().size());
@@ -41,7 +41,7 @@ class JsonReaderTest extends JsonTest {
     void testReaderEmptyWorkoutCollection() {
         JsonReader reader = new JsonReader("./data/testReaderEmptyWorkoutCollection.json");
         try {
-            WorkoutCollection wc = reader.readC();
+            WorkoutCollection wc = reader.readCollection();
             assertEquals("My workout collection", wc.getName());
             assertEquals(0, wc.getWorkouts().size());
         } catch (IOException e) {
@@ -53,7 +53,7 @@ class JsonReaderTest extends JsonTest {
     void testReaderGeneralWorkoutCollection() {
         JsonReader reader = new JsonReader("./data/testReaderGeneralWorkoutCollection.json");
         try {
-            WorkoutCollection wc = reader.readC();
+            WorkoutCollection wc = reader.readCollection();
             assertEquals("My workout collection", wc.getName());
             List<Workout> workouts = wc.getWorkouts();
             assertEquals(2, workouts.size());
@@ -68,7 +68,7 @@ class JsonReaderTest extends JsonTest {
     void testReaderGeneralWorkout() {
         JsonReader reader = new JsonReader("./data/testReaderGeneralWorkout.json");
         try {
-            Workout w = reader.readW();
+            Workout w = reader.readWorkout();
             assertEquals("My workout", w.getWorkoutName());
             assertEquals("advanced", w.getWorkoutLevel());
             List<Exercise> exercises = w.getExercises();

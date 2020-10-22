@@ -2,6 +2,7 @@ package ui;
 
 import java.io.FileNotFoundException;
 
+// main class for workout manager
 public class Main {
     public static void main(String[] args) {
         try {

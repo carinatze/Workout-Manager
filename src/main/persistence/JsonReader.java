@@ -24,7 +24,7 @@ public class JsonReader {
 
     // EFFECTS: reads workout collection from file and returns it;
     // throws IOException if an error occurs reading data from file
-    public WorkoutCollection readC() throws IOException {
+    public WorkoutCollection readCollection() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return parseWorkoutCollection(jsonObject);
@@ -32,7 +32,7 @@ public class JsonReader {
 
     // EFFECTS: reads workout from file and returns it;
     // throws IOException if an error occurs reading data from file
-    public Workout readW() throws IOException {
+    public Workout readWorkout() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return parseWorkout(jsonObject);
@@ -51,8 +51,8 @@ public class JsonReader {
 
     // EFFECTS: parses workout from JSON object and returns it
     private Workout parseWorkout(JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
-        Workout w = new Workout(name);
+        String workoutName = jsonObject.getString("name");
+        Workout w = new Workout(workoutName);
         addExercises(w, jsonObject);
         //parseWorkoutLevel(w, jsonObject);
         return w;
@@ -66,8 +66,8 @@ public class JsonReader {
 
     // EFFECTS: parses workout collection from JSON object and returns it
     private WorkoutCollection parseWorkoutCollection(JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
-        WorkoutCollection wc = new WorkoutCollection(name);
+        String collectionName = jsonObject.getString("Collection");
+        WorkoutCollection wc = new WorkoutCollection(collectionName);
         addWorkouts(wc, jsonObject);
         return wc;
     }
@@ -85,8 +85,8 @@ public class JsonReader {
     // MODIFIES: wc
     // EFFECTS: parses workout from JSON object and adds it to workout
     private void addWorkout(WorkoutCollection wc, JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
-        Workout workout = new Workout(name);
+        String workoutName = jsonObject.getString("name");
+        Workout workout = new Workout(workoutName);
         wc.addWorkout(workout);
     }
 

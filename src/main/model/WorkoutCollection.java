@@ -61,11 +61,20 @@ public class WorkoutCollection implements Writable {
         return collection.get(0);
     }
 
+    public boolean isWorkoutInCollection(String workoutName) {
+        for (int i = 0; collection.size() > i; i++) {
+            if (workoutName.equals(collection.get(i).getWorkoutName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // code from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("name",name);
+        json.put("Collection",name);
         json.put("workouts", workoutsToJson());
         return json;
     }

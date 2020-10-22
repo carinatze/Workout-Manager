@@ -33,5 +33,6 @@ them to stay active when they are feeling lazy or tired.
 - As a user, I want to be able to view a list of all the different exercises in my workout
 - As a user, I want to be able to view a list of all the different workouts in my collection
 - As a user, I want to be able to set the level of the workout
-- As a user, I want to be able to save my workout to file, and have the option to do so or not.
-- As a user, when I start the application, I want to be given the option to load my workouts from file.
+
+- As a user, I want to be able to save my workout collection to file, and have the option to do so or not.
+- As a user, when I start the application, I want to be given the option to load my workouts from a file.

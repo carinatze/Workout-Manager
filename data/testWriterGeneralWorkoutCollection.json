@@ -1,0 +1,15 @@
+{
+    "workouts": [
+        {
+            "exercises": [],
+            "level": "n/a",
+            "name": "workout1"
+        },
+        {
+            "exercises": [],
+            "level": "n/a",
+            "name": "workout2"
+        }
+    ],
+    "Collection": "My workout collection"
+}

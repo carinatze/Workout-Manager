@@ -35,7 +35,7 @@ public class JsonWriterTest extends JsonTest {
             writer.close();
 
             JsonReader reader = new JsonReader("./data/testWriterEmptyWorkout.json");
-            w = reader.readW();
+            w = reader.readWorkout();
             assertEquals("My workout", w.getWorkoutName());
             assertEquals("n/a", w.getWorkoutLevel());
             assertEquals(0, w.getExercises().size());
@@ -54,7 +54,7 @@ public class JsonWriterTest extends JsonTest {
             writer.close();
 
             JsonReader reader = new JsonReader("./data/testWriterEmptyWorkoutCollection.json");
-            wc = reader.readC();
+            wc = reader.readCollection();
             assertEquals("My workout collection", wc.getName());
             assertEquals(0, wc.getWorkouts().size());
         } catch (IOException e) {
@@ -77,7 +77,7 @@ public class JsonWriterTest extends JsonTest {
             writer.close();
 
             JsonReader reader = new JsonReader("./data/testWriterGeneralWorkoutCollection.json");
-            wc = reader.readC();
+            wc = reader.readCollection();
             assertEquals("My workout collection", wc.getName());
             List<Workout> workouts = wc.getWorkouts();
             assertEquals(2, workouts.size());
@@ -102,7 +102,7 @@ public class JsonWriterTest extends JsonTest {
             writer.close();
 
             JsonReader reader = new JsonReader("./data/testWriterGeneralWorkout.json");
-            w = reader.readW();
+            w = reader.readWorkout();
             assertEquals("My workout", w.getWorkoutName());
             assertEquals("beginner", w.getWorkoutLevel());
             List<Exercise> exercises = w.getExercises();
