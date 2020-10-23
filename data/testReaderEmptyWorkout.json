@@ -1,5 +1,9 @@
 {
-  "exercises": [],
-  "level": "n/a",
-  "name": "My workout"
+  "workouts": [
+    {
+      "exercises": [],
+      "level": "n/a",
+      "name": "My workout"
+    }
+  ]
 }

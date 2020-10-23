@@ -74,7 +74,7 @@ public class WorkoutCollection implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("Collection",name);
+        json.put("name",name);
         json.put("workouts", workoutsToJson());
         return json;
     }
