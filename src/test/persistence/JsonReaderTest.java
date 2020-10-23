@@ -79,21 +79,4 @@ class JsonReaderTest extends JsonTest {
             fail("Couldn't read from file");
         }
     }
-
-    @Test
-    void testReaderEmptyManager() {
-        JsonReader reader = new JsonReader("./data/testReaderEmptyManager.json");
-        try {
-            WorkoutCollection wc = reader.readC();
-            assertEquals("My workout collection", wc.getName());
-            assertEquals(1, wc.getWorkouts().size());
-
-            Workout w = reader.readW();
-            assertEquals("My workout", w.getWorkoutName());
-            assertEquals("n/a", w.getWorkoutLevel());
-            assertEquals(0, w.getExercises().size());
-        } catch (IOException e) {
-            fail("Couldn't read from file");
-        }
-    }
 }
