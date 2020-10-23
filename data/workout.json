@@ -15,14 +15,19 @@
             "name": "w1"
         },
         {
+            "exercises": [],
+            "level": "n/a",
+            "name": "e2"
+        },
+        {
             "exercises": [
                 {
                     "reps": 3,
                     "exercise": "e3"
                 },
                 {
-                    "reps": 4,
-                    "exercise": "e4"
+                    "reps": 3,
+                    "exercise": "e3"
                 }
             ],
             "level": "n/a",

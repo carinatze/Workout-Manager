@@ -175,7 +175,6 @@ public class JsonReader {
         String name = obj2.getString("name");
         Workout w = new Workout(name);
         addExercises(w, jsonObject);
-        //parseWorkoutLevel(w, jsonObject);
         return w;
     }
 
