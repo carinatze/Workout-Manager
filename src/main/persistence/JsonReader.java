@@ -149,13 +149,13 @@ public class JsonReader {
         return parseWorkoutCollection(jsonObject);
     }
 
-    // EFFECTS: reads workout from file and returns it;
-    // throws IOException if an error occurs reading data from file
-    public Workout readW() throws IOException {
-        String jsonData = readFile(source);
-        JSONObject jsonObject = new JSONObject(jsonData);
-        return parseWorkout(jsonObject);
-    }
+//    // EFFECTS: reads workout from file and returns it;
+//    // throws IOException if an error occurs reading data from file
+//    public Workout readW() throws IOException {
+//        String jsonData = readFile(source);
+//        JSONObject jsonObject = new JSONObject(jsonData);
+//        return parseWorkout(jsonObject);
+//    }
 
     // EFFECTS: reads source file as string and returns it
     private String readFile(String source) throws IOException {
@@ -170,8 +170,8 @@ public class JsonReader {
 
     // EFFECTS: parses workout from JSON object and returns it
     private Workout parseWorkout(JSONObject jsonObject) {
-        //JSONArray obj = jsonObject.getJSONArray("workouts");
-        //JSONObject obj2 = obj.getJSONObject(0);
+        JSONArray obj = jsonObject.getJSONArray("workouts");
+        JSONObject obj2 = obj.getJSONObject(0);
         String workoutName =jsonObject.getString("name");
         Workout w = new Workout(workoutName);
         addExercises(w, jsonObject);

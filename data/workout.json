@@ -1,16 +1,7 @@
 {
     "workouts": [
         {
-            "exercises": [
-                {
-                    "reps": 1,
-                    "exercise": "e1"
-                },
-                {
-                    "reps": 2,
-                    "exercise": "e2"
-                }
-            ],
+            "exercises": [],
             "level": "n/a",
             "name": "w1"
         },
@@ -20,18 +11,17 @@
             "name": "e2"
         },
         {
-            "exercises": [
-                {
-                    "reps": 3,
-                    "exercise": "e3"
-                },
-                {
-                    "reps": 3,
-                    "exercise": "e3"
-                }
-            ],
+            "exercises": [],
             "level": "n/a",
             "name": "w2"
+        },
+        {
+            "exercises": [{
+                "reps": 5,
+                "exercise": "e5"
+            }],
+            "level": "beginner",
+            "name": "w3"
         }
     ],
     "name": "My workout collection"

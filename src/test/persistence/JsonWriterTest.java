@@ -25,24 +25,24 @@ public class JsonWriterTest extends JsonTest {
         }
     }
 
-    @Test
-    void testWriterEmptyWorkout() {
-        try {
-            Workout w = new Workout("My workout");
-            JsonWriter writer = new JsonWriter("./data/testWriterEmptyWorkout.json");
-            writer.open();
-            writer.write(w);
-            writer.close();
-
-            JsonReader reader = new JsonReader("./data/testWriterEmptyWorkout.json");
-            w = reader.readW();
-            assertEquals("My workout", w.getWorkoutName());
-            assertEquals("n/a", w.getWorkoutLevel());
-            assertEquals(0, w.getExercises().size());
-        } catch (IOException e) {
-            fail("Exception should not have been thrown");
-        }
-    }
+//    @Test
+//    void testWriterEmptyWorkout() {
+//        try {
+//            Workout w = new Workout("My workout");
+//            JsonWriter writer = new JsonWriter("./data/testWriterEmptyWorkout.json");
+//            writer.open();
+//            writer.write(w);
+//            writer.close();
+//
+//            JsonReader reader = new JsonReader("./data/testWriterEmptyWorkout.json");
+//            w = reader.readW();
+//            assertEquals("My workout", w.getWorkoutName());
+//            assertEquals("n/a", w.getWorkoutLevel());
+//            assertEquals(0, w.getExercises().size());
+//        } catch (IOException e) {
+//            fail("Exception should not have been thrown");
+//        }
+//    }
 
     @Test
     void testWriterEmptyWorkoutCollection() {
@@ -89,29 +89,29 @@ public class JsonWriterTest extends JsonTest {
         }
     }
 
-    @Test
-    void testWriterGeneralWorkout() {
-        try {
-            Workout w = new Workout("My workout");
-            w.setWorkoutLevel("beginner");
-            w.addExercise(new Exercise("abs", 2));
-            w.addExercise(new Exercise("butt", 4));
-            JsonWriter writer = new JsonWriter("./data/testWriterGeneralWorkout.json");
-            writer.open();
-            writer.write(w);
-            writer.close();
-
-            JsonReader reader = new JsonReader("./data/testWriterGeneralWorkout.json");
-            w = reader.readW();
-            assertEquals("My workout", w.getWorkoutName());
-            assertEquals("beginner", w.getWorkoutLevel());
-            List<Exercise> exercises = w.getExercises();
-            assertEquals(2, exercises.size());
-            checkExercise("abs", 2, exercises.get(0));
-            checkExercise("butt", 4, exercises.get(1));
-
-        } catch (IOException e) {
-            fail("Exception should not have been thrown");
-        }
-    }
+//    @Test
+//    void testWriterGeneralWorkout() {
+//        try {
+//            Workout w = new Workout("My workout");
+//            w.setWorkoutLevel("beginner");
+//            w.addExercise(new Exercise("abs", 2));
+//            w.addExercise(new Exercise("butt", 4));
+//            JsonWriter writer = new JsonWriter("./data/testWriterGeneralWorkout.json");
+//            writer.open();
+//            writer.write(w);
+//            writer.close();
+//
+//            JsonReader reader = new JsonReader("./data/testWriterGeneralWorkout.json");
+//            w = reader.readW();
+//            assertEquals("My workout", w.getWorkoutName());
+//            assertEquals("beginner", w.getWorkoutLevel());
+//            List<Exercise> exercises = w.getExercises();
+//            assertEquals(2, exercises.size());
+//            checkExercise("abs", 2, exercises.get(0));
+//            checkExercise("butt", 4, exercises.get(1));
+//
+//        } catch (IOException e) {
+//            fail("Exception should not have been thrown");
+//        }
+//    }
 }
