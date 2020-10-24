@@ -170,10 +170,10 @@ public class JsonReader {
 
     // EFFECTS: parses workout from JSON object and returns it
     private Workout parseWorkout(JSONObject jsonObject) {
-        JSONArray obj = jsonObject.getJSONArray("workouts");
-        JSONObject obj2 = obj.getJSONObject(0);
-        String name = obj2.getString("name");
-        Workout w = new Workout(name);
+        //JSONArray obj = jsonObject.getJSONArray("workouts");
+        //JSONObject obj2 = obj.getJSONObject(0);
+        String workoutName =jsonObject.getString("name");
+        Workout w = new Workout(workoutName);
         addExercises(w, jsonObject);
         return w;
     }

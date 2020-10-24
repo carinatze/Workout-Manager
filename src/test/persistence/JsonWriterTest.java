@@ -28,7 +28,6 @@ public class JsonWriterTest extends JsonTest {
     @Test
     void testWriterEmptyWorkout() {
         try {
-            WorkoutCollection wc = new WorkoutCollection("My workout collection");
             Workout w = new Workout("My workout");
             JsonWriter writer = new JsonWriter("./data/testWriterEmptyWorkout.json");
             writer.open();
