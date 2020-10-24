@@ -143,19 +143,11 @@ public class JsonReader {
 
     // EFFECTS: reads workout collection from file and returns it;
     // throws IOException if an error occurs reading data from file
-    public WorkoutCollection readC() throws IOException {
+    public WorkoutCollection read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return parseWorkoutCollection(jsonObject);
     }
-
-//    // EFFECTS: reads workout from file and returns it;
-//    // throws IOException if an error occurs reading data from file
-//    public Workout readW() throws IOException {
-//        String jsonData = readFile(source);
-//        JSONObject jsonObject = new JSONObject(jsonData);
-//        return parseWorkout(jsonObject);
-//    }
 
     // EFFECTS: reads source file as string and returns it
     private String readFile(String source) throws IOException {
@@ -166,22 +158,6 @@ public class JsonReader {
         }
 
         return contentBuilder.toString();
-    }
-
-    // EFFECTS: parses workout from JSON object and returns it
-    private Workout parseWorkout(JSONObject jsonObject) {
-        JSONArray obj = jsonObject.getJSONArray("workouts");
-        JSONObject obj2 = obj.getJSONObject(0);
-        String workoutName =jsonObject.getString("name");
-        Workout w = new Workout(workoutName);
-        addExercises(w, jsonObject);
-        return w;
-    }
-
-    // EFFECTS: parses workout level from JSON object and returns it
-    private void parseWorkoutLevel(Workout w, JSONObject jsonObject) {
-        String level = jsonObject.getString("level");
-        w.setWorkoutLevel(level);
     }
 
     // EFFECTS: parses workout collection from JSON object and returns it
@@ -210,28 +186,42 @@ public class JsonReader {
         wc.addWorkout(workout);
     }
 
+    //    // EFFECTS: parses workout from JSON object and returns it
+//    private Workout parseWorkout(JSONObject jsonObject) {
+//        JSONArray obj = jsonObject.getJSONArray("workouts");
+//        JSONObject obj2 = obj.getJSONObject(0);
+//        String workoutName = jsonObject.getString("name");
+//        Workout w = new Workout(workoutName);
+//        addExercises(w, jsonObject);
+//        return w;
+//    }
+//
+//    // EFFECTS: parses workout level from JSON object and returns it
+//    private void parseWorkoutLevel(Workout w, JSONObject jsonObject) {
+//        String level = jsonObject.getString("level");
+//        w.setWorkoutLevel(level);
+//    }
     // MODIFIES: w
-    // EFFECTS: parses exercises from JSON object and adds them to workout
-    private void addExercises(Workout w, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("workouts");
-        for (Object json : jsonArray) {
-            JSONObject exercises = (JSONObject)json;
-            JSONObject workout = (JSONObject)json;
-            String level = workout.getString("level");
-            w.setWorkoutLevel(level);
-            for (Object json1 : exercises.getJSONArray("exercises")) {
-                JSONObject nextExercise = (JSONObject) json1;
-                addExercise(w, nextExercise);
-            }
-        }
-    }
-
+//    // EFFECTS: parses exercises from JSON object and adds them to workout
+//    private void addExercises(Workout w, JSONObject jsonObject) {
+//        JSONArray jsonArray = jsonObject.getJSONArray("workouts");
+//        for (Object json : jsonArray) {
+//            JSONObject exercises = (JSONObject)json;
+//            JSONObject workout = (JSONObject)json;
+//            String level = workout.getString("level");
+//            w.setWorkoutLevel(level);
+//            for (Object json1 : exercises.getJSONArray("exercises")) {
+//                JSONObject nextExercise = (JSONObject) json1;
+//                addExercise(w, nextExercise);
+//            }
+//        }
+//    }
     // MODIFIES: w
-    // EFFECTS: parses exercise from JSON object and adds it to workout
-    private void addExercise(Workout w, JSONObject jsonObject) {
-        String exerciseName = jsonObject.getString("exercise");
-        int reps = (int) jsonObject.get("reps");
-        Exercise exercise = new Exercise(exerciseName, reps);
-        w.addExercise(exercise);
-    }
+//    // EFFECTS: parses exercise from JSON object and adds it to workout
+//    private void addExercise(Workout w, JSONObject jsonObject) {
+//        String exerciseName = jsonObject.getString("exercise");
+//        int reps = (int) jsonObject.get("reps");
+//        Exercise exercise = new Exercise(exerciseName, reps);
+//        w.addExercise(exercise);
+//    }
 }

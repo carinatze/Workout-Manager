@@ -32,13 +32,6 @@ public class JsonWriter {
         saveToFile(json.toString(TAB));
     }
 
-//    // MODIFIES: this
-//    // EFFECTS: writes JSON representation of workout to file
-//    public void write(Workout w) {
-//        JSONObject json = w.toJson();
-//        saveToFile(json.toString(TAB));
-//    }
-
     // MODIFIES: this
     // EFFECTS: closes writer
     public void close() {

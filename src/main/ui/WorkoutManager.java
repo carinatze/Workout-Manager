@@ -92,12 +92,6 @@ public class WorkoutManager {
             printWorkoutExercises(workout);
         } else if (str.equals(GO_BACK_COMMAND)) {
             System.out.println("going back to main menu");
-//        } else if (str.equals("s")) {
-//            saveWorkout();
-//        } else if (str.equals("l")) {
-//            loadWorkout();
-//        } else if (str.equals("pl")) {
-//            printLoadedExercises();
         } else {
             System.out.println("Sorry, I didn't understand that command. Please try again.");
         }
@@ -131,10 +125,6 @@ public class WorkoutManager {
                 + "'");
         System.out.println(PRINT_EXERCISES_COMMAND + " -> print exercises in " + "'" + workout.getWorkoutName()
                 + "'");
-        System.out.println("pl" + " -> print loaded exercises in " + "'" + workout.getWorkoutName()
-                + "'");
-        System.out.println("s -> save workout to file");
-        System.out.println("l -> load workout from file");
         System.out.println(GO_BACK_COMMAND + " -> to go back to main menu ");
         processWorkoutCommand(workout);
     }
@@ -187,16 +177,6 @@ public class WorkoutManager {
         System.out.println("All Workouts: " + collection.getListOfWorkouts());
     }
 
-//    // EFFECTS: prints all exercises that are loaded from file in the workout
-//    private void printLoadedExercises() {
-//        try {
-//            workout = jsonReader.readC();
-//            System.out.println("All Exercises :" + workout.getExercises());
-//        } catch (IOException e) {
-//            System.out.println("Unable to read from file: " + JSON_STORE);
-//        }
-//    }
-
     // EFFECTS: prints all the exercises in the specified workout
     private void printWorkoutExercises(Workout workout) {
         System.out.println("All Exercises in " + "'" + workout.getWorkoutName() + "':"
@@ -217,29 +197,6 @@ public class WorkoutManager {
 
     // code from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 
-//    // EFFECTS: saves the workout to file
-//    private void saveWorkout() {
-//        try {
-//            jsonWriter.open();
-//            jsonWriter.write(workout);
-//            jsonWriter.close();
-//            System.out.println("Saved " + workout.getWorkoutName() + " to " + JSON_STORE);
-//        } catch (FileNotFoundException e) {
-//            System.out.println("Unable to write to file: " + JSON_STORE);
-//        }
-//    }
-//
-//    // MODIFIES: this
-//    // EFFECTS: loads workout from file
-//    private void loadWorkout() {
-//        try {
-//            workout = jsonReader.readC();
-//            System.out.println("Loaded '" + workout.getWorkoutName() + "' from " + JSON_STORE);
-//        } catch (IOException e) {
-//            System.out.println("Unable to read from file: " + JSON_STORE);
-//        }
-//    }
-
     // EFFECTS: saves the collection to file
     private void saveCollection() {
         try {
@@ -256,7 +213,7 @@ public class WorkoutManager {
     // EFFECTS: loads collection from file
     private void loadCollection() {
         try {
-            collection = jsonReader.readC();
+            collection = jsonReader.read();
             System.out.println("Loaded '" + collection.getName() + "' from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
