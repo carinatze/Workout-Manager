@@ -1,11 +1,17 @@
 {
     "workouts": [
         {
-            "exercises": [{
-                "reps": 6,
-                "exercise": "abs"
-            }],
-            "level": "n/a",
+            "exercises": [
+                {
+                    "reps": 6,
+                    "exercise": "abs"
+                },
+                {
+                    "reps": 6,
+                    "exercise": "butt"
+                }
+            ],
+            "level": "beginner",
             "name": "w1"
         },
         {

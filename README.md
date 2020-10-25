@@ -35,4 +35,4 @@ them to stay active when they are feeling lazy or tired.
 - As a user, I want to be able to set the level of the workout
 
 - As a user, I want to be able to save my workout collection to file, and have the option to do so or not.
-- As a user, when I start the application, I want to be given the option to load my workouts from a file.
+- As a user, when I start the application, I want to be given the option to load my workout collection from a file.
