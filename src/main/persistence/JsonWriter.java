@@ -1,6 +1,5 @@
 package persistence;
 
-import model.Workout;
 import model.WorkoutCollection;
 import org.json.JSONObject;
 

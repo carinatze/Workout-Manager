@@ -33,8 +33,8 @@ public class WorkoutCollection implements Writable {
     // EFFECTS: returns the names of all the workouts in the collection
     public ArrayList<String> getListOfWorkouts() {
         ArrayList<String> nameList = new ArrayList<>();
-        for (int i = 0; i < collection.size(); i++) {
-            nameList.add(collection.get(i).getWorkoutName());
+        for (Workout workout : collection) {
+            nameList.add(workout.getWorkoutName());
         }
         return nameList;
     }
@@ -53,17 +53,17 @@ public class WorkoutCollection implements Writable {
     // EFFECTS: returns specific workout from the collection given the workout name, if workout name is not found
     //          returns the first workout name in the collection
     public Workout getWorkout(String workoutName) {
-        for (int i = 0; i < collection.size(); i++) {
-            if (workoutName.equals(collection.get(i).getWorkoutName())) {
-                return collection.get(i);
+        for (Workout workout : collection) {
+            if (workoutName.equals(workout.getWorkoutName())) {
+                return workout;
             }
         }
         return collection.get(0);
     }
 
     public boolean isWorkoutInCollection(String workoutName) {
-        for (int i = 0; collection.size() > i; i++) {
-            if (workoutName.equals(collection.get(i).getWorkoutName())) {
+        for (Workout workout : collection) {
+            if (workoutName.equals(workout.getWorkoutName())) {
                 return true;
             }
         }

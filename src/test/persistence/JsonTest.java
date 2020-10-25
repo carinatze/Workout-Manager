@@ -1,18 +1,19 @@
 package persistence;
 
-import model.WorkoutCollection;
-import model.Workout;
 import model.Exercise;
-
-import java.util.List;
+import model.Workout;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 // code from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 public class JsonTest {
-
-
-    protected void checkWorkout(String name, Workout workout) {
+    protected void checkWorkout(String name, String level, Workout workout) {
         assertEquals(name, workout.getWorkoutName());
+        assertEquals(level, workout.getWorkoutLevel());
+    }
+
+    protected void checkExercise(String exerciseName, Integer reps, Exercise exercise) {
+        assertEquals(exerciseName, exercise.getExerciseName());
+        assertEquals(reps, exercise.getReps());
     }
 }

@@ -10,7 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-// code based on TellerApp from AccountNotRobust and InfoManager from FitLifeGymChain
+// citation: https://github.students.cs.ubc.ca/CPSC210/TellerApp.git and InfoManager from FitLifeGymChain
 // Workout manager application
 public class WorkoutManager {
     private static final String PRINT_WORKOUTS_COMMAND = "p";
@@ -139,8 +139,7 @@ public class WorkoutManager {
             System.out.println("Please enter the number of reps for: " + exerciseName);
             String reps = input.next();
 
-            Integer repsInt = Integer.parseInt(reps);
-            workout.addExercise(new Exercise(exerciseName, repsInt));
+            workout.addExercise(new Exercise(exerciseName, Integer.parseInt(reps)));
 
             System.out.println(reps + " " + exerciseName + " has been added to " + workout.getWorkoutName());
             displayWorkoutMenu(workout);
@@ -195,7 +194,7 @@ public class WorkoutManager {
         displayWorkoutMenu(workout);
     }
 
-    // code from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+    // citation: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 
     // EFFECTS: saves the collection to file
     private void saveCollection() {

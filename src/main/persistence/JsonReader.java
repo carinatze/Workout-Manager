@@ -191,50 +191,13 @@ public class JsonReader {
             JSONObject nextExercise = (JSONObject) exercise;
             addExercise(workout, nextExercise);
         }
-
-        //String exerciseName = jsonObject.getString("exercise");
-//        int reps = (int) jsonObject.get("reps");
-//        Exercise exercise = new Exercise(exerciseName, reps);
-//        w.addExercise(exercise);
-
     }
 
-    //MODIFIES: w
-    // EFFECTS: parses exercise from JSON object and adds it to workout
+    //MODIFIES: wc, workout
+    // EFFECTS: parses exercise from JSON object and adds it to workout in workout collection
     private void addExercise(Workout w, JSONObject jsonObject) {
         String exerciseName = jsonObject.getString("exercise");
         int reps = (int) jsonObject.get("reps");
         w.addExercise(new Exercise(exerciseName, reps));
     }
-
-    // MODIFIES: w
-//    // EFFECTS: parses exercises from JSON object and adds them to workout
-//    private void addExercises(Workout w, JSONObject jsonObject) {
-//        JSONArray jsonArray = jsonObject.getJSONArray("workouts");
-//        for (Object json : jsonArray) {
-//            JSONObject exercises = (JSONObject)json;
-//            JSONObject workout = (JSONObject)json;
-//            String level = workout.getString("level");
-//            w.setWorkoutLevel(level);
-//            for (Object json1 : exercises.getJSONArray("exercises")) {
-//                JSONObject nextExercise = (JSONObject) json1;
-//                addExercise(w, nextExercise);
-//            }
-//        }
-//    }
-    //    // EFFECTS: parses workout from JSON object and returns it
-//    private Workout parseWorkout(JSONObject jsonObject) {
-//        JSONArray obj = jsonObject.getJSONArray("workouts");
-//        JSONObject obj2 = obj.getJSONObject(0);
-//        String workoutName = jsonObject.getString("name");
-//        Workout w = new Workout(workoutName);
-//        addExercises(w, jsonObject);
-//        return w;
-//    }
-//
-//    // EFFECTS: parses workout level from JSON object and returns it
-//    private void parseWorkoutLevel(Workout w, JSONObject jsonObject) {
-//        String level = jsonObject.getString("level");
-//        w.setWorkoutLevel(level);
-//    }
 }

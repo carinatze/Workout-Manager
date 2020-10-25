@@ -18,21 +18,21 @@ public class ExerciseTest {
     @Test
     // tests exercise constructor
     public void testExerciseConstructor() {
-        assertEquals("exercise1", testExercise1.getExercise());
+        assertEquals("exercise1", testExercise1.getExerciseName());
         assertEquals(1, testExercise1.getReps());
     }
 
     @Test
     // tests changing exercise into a string
     public void testToString() {
-        assertEquals("exercise2", testExercise2.getExercise());
+        assertEquals("exercise2", testExercise2.getExerciseName());
         assertEquals("2 exercise2", testExercise2.toString());
     }
 
     @Test
     // tests get exercise name
     public void testGetExercise() {
-        assertEquals("exercise2", testExercise2.getExercise());
+        assertEquals("exercise2", testExercise2.getExerciseName());
     }
 
     @Test

@@ -1,12 +1,10 @@
 package persistence;
 
-import model.Exercise;
 import model.Workout;
 import model.WorkoutCollection;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -45,13 +43,13 @@ class JsonReaderTest extends JsonTest {
             assertEquals("My workout collection", wc.getName());
             List<Workout> workouts = wc.getWorkouts();
             assertEquals(2, workouts.size());
-            checkWorkout("workout1", workouts.get(0));
-            checkWorkout("workout2",workouts.get(1));
+            checkWorkout("workout1", "n/a", workouts.get(0));
+            checkWorkout("workout2","n/a", workouts.get(1));
 
             assertEquals(1, workouts.get(0).getExercises().size());
             assertEquals(1, workouts.get(1).getExercises().size());
-            assertEquals("e1", workouts.get(0).getExercises().getFirst().getExercise());
-            assertEquals("e2", workouts.get(1).getExercises().getFirst().getExercise());
+            assertEquals("e1", workouts.get(0).getExercises().getFirst().getExerciseName());
+            assertEquals("e2", workouts.get(1).getExercises().getFirst().getExerciseName());
         } catch (IOException e) {
             fail("Couldn't read from file");
         }

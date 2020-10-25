@@ -6,7 +6,6 @@ import model.WorkoutCollection;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -67,15 +66,12 @@ public class JsonWriterTest extends JsonTest {
             assertEquals("My workout collection", wc.getName());
             List<Workout> workouts = wc.getWorkouts();
             assertEquals(2, workouts.size());
-            checkWorkout("workout1", workouts.get(0));
-            checkWorkout("workout2", workouts.get(1));
+            checkWorkout("workout1", "n/a", workouts.get(0));
+            checkWorkout("workout2", "n/a", workouts.get(1));
 
-            LinkedList<Exercise> exercises1 = new LinkedList<>();
-            LinkedList<Exercise> exercises2 = new LinkedList<>();
-            exercises1.add(exercise1);
-            exercises2.add(exercise2);
-            assertEquals(exercises1, workout1.getExercises());
-            assertEquals(exercises2, workout2.getExercises());
+            checkExercise("e1", 1, workout1.getExercises().getFirst());
+            checkExercise("e2", 2, workout2.getExercises().getFirst());
+
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");

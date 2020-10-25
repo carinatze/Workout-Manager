@@ -4,7 +4,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
-import java.util.List;
 import java.util.LinkedList;
 
 // Represents a workout guide with a workout name, level and list of exercises
