@@ -1,12 +1,18 @@
 {
     "workouts": [
         {
-            "exercises": [],
+            "exercises": [{
+                "reps": 1,
+                "exercise": "e1"
+            }],
             "level": "n/a",
             "name": "workout1"
         },
         {
-            "exercises": [],
+            "exercises": [{
+                "reps": 2,
+                "exercise": "e2"
+            }],
             "level": "n/a",
             "name": "workout2"
         }
