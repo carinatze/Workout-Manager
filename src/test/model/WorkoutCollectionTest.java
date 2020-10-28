@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class WorkoutCollectionTest {
     private Workout testWorkout1;
@@ -26,6 +26,8 @@ public class WorkoutCollectionTest {
         assertEquals(0, testAllWorkouts.numWorkouts());
         testAllWorkouts.addWorkout(testWorkout1);
         assertEquals(testWorkout1, testAllWorkouts.getWorkout("workout"));
+        assertTrue(testAllWorkouts.isWorkoutInCollection("workout"));
+        assertFalse(testAllWorkouts.isWorkoutInCollection("workout2"));
     }
 
     @Test
@@ -35,6 +37,8 @@ public class WorkoutCollectionTest {
         testAllWorkouts.addWorkout(testWorkout1);
         assertEquals(1, testAllWorkouts.numWorkouts());
         assertEquals(1, testAllWorkouts.getWorkouts().size());
+        assertTrue(testAllWorkouts.isWorkoutInCollection("workout"));
+        assertFalse(testAllWorkouts.isWorkoutInCollection("workout2"));
     }
 
     @Test
@@ -47,6 +51,8 @@ public class WorkoutCollectionTest {
         assertEquals(2, testAllWorkouts.numWorkouts());
         testAllWorkouts.addWorkout(testWorkout1);
         assertEquals(3, testAllWorkouts.numWorkouts());
+        assertTrue(testAllWorkouts.isWorkoutInCollection("workout"));
+        assertTrue(testAllWorkouts.isWorkoutInCollection("workout2"));
     }
 
     @Test
@@ -60,6 +66,8 @@ public class WorkoutCollectionTest {
 
         assertEquals(result, testAllWorkouts.getListOfWorkouts());
         assertEquals(1, testAllWorkouts.numWorkouts());
+        assertTrue(testAllWorkouts.isWorkoutInCollection("workout"));
+        assertFalse(testAllWorkouts.isWorkoutInCollection("workout2"));
     }
 
     @Test
@@ -75,6 +83,8 @@ public class WorkoutCollectionTest {
 
         assertEquals(result, testAllWorkouts.getListOfWorkouts());
         assertEquals(2, testAllWorkouts.numWorkouts());
+        assertTrue(testAllWorkouts.isWorkoutInCollection("workout"));
+        assertTrue(testAllWorkouts.isWorkoutInCollection("workout2"));
     }
 
     @Test
