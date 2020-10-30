@@ -7,6 +7,7 @@ import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// Unit tests for Workout
 public class WorkoutTest {
     private Workout testWorkout1;
     private Workout testWorkout2;

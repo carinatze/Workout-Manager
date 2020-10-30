@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// Unit tests for WorkoutCollection
 public class WorkoutCollectionTest {
     private Workout testWorkout1;
     private Workout testWorkout2;

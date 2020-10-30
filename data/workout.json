@@ -3,26 +3,24 @@
         {
             "exercises": [
                 {
-                    "reps": 6,
-                    "exercise": "abs"
+                    "reps": 8,
+                    "exercise": "Bench Press"
                 },
                 {
-                    "reps": 6,
-                    "exercise": "butt"
+                    "reps": 4,
+                    "exercise": "Squats"
                 }
             ],
+            "level": "n/a",
+            "name": "Week 1 Day 1"
+        },
+        {
+            "exercises": [{
+                "reps": 10,
+                "exercise": "Dumbbell Curls"
+            }],
             "level": "beginner",
-            "name": "w1"
-        },
-        {
-            "exercises": [],
-            "level": "n/a",
-            "name": "w2"
-        },
-        {
-            "exercises": [],
-            "level": "n/a",
-            "name": "r8"
+            "name": "Week 1 Day 3"
         }
     ],
     "name": "My workout collection"

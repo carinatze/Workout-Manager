@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// Unit tests for Exercise
 public class ExerciseTest {
     private Exercise testExercise1;
     private Exercise testExercise2;
