@@ -15,11 +15,17 @@
             "name": "Week 1 Day 1"
         },
         {
-            "exercises": [{
-                "reps": 10,
-                "exercise": "Dumbbell Curls"
-            }],
-            "level": "beginner",
+            "exercises": [
+                {
+                    "reps": 10,
+                    "exercise": "Dumbbell Curls"
+                },
+                {
+                    "reps": 20,
+                    "exercise": "Squats"
+                }
+            ],
+            "level": "n/a",
             "name": "Week 1 Day 3"
         }
     ],
