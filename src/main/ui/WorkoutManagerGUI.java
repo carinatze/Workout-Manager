@@ -169,7 +169,15 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
             }
         } else if (actionEvent.getActionCommand().equals("load")) {
             try {
+                workoutModel.removeAllElements();
+                exerciseModel.removeAllElements();
                 collection = jsonReader.read();
+                for (Workout w : collection.getWorkouts()) {
+                    workoutModel.addElement(w.getWorkoutName());
+                }
+                for (Exercise e : collection.getWorkouts().get(0).getExercises()) {
+                    exerciseModel.addElement(e.getReps() + " " + e.getExerciseName());
+                }
             } catch (IOException e) {
                 System.out.println("Unable to read from file: " + JSON_STORE);
             }
