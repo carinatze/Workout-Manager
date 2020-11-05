@@ -17,31 +17,34 @@ import java.io.IOException;
 // gui class for workout manager
 public class WorkoutManagerGUI extends JFrame implements ActionListener {
 
-    private JTextArea userTextArea;
     private JLabel workoutNameLabel;
     private JLabel exerciseNameLabel;
     private JLabel exerciseRepsLabel;
 
-    private JPanel panel1;
-    private JPanel panel2;
-    private JPanel panel3;
+    private JPanel textPanel;
+    private JPanel buttonPanel;
     private JPanel gridPanel;
     private JPanel workoutPanel;
     private JPanel exercisePanel;
+
     private JSplitPane splitPane;
 
     private JButton addWorkoutButton;
     private JButton addExerciseButton;
-    private JButton saveCollectionButton;
-    private JButton loadCollectionButton;
+    private JButton saveButton;
+    private JButton loadButton;
 
     private JTextField workoutNameText;
     private JTextField exerciseNameText;
     private JTextField exerciseRepsText;
 
+    private JList<String> workoutJList;
+    private DefaultListModel<String> workoutModel;
+
+    private JList<String> exerciseJList;
+    private DefaultListModel<String> exerciseModel;
+
     private JFrame frame;
-    private JList<Workout> workoutList;
-    private DefaultListModel<Workout> model;
 
     private static final String JSON_STORE = "./data/workout.json";
     private JsonWriter jsonWriter;
@@ -53,72 +56,82 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     // EFFECTS: gui constructor for workout manager
     public WorkoutManagerGUI() {
         frame = new JFrame("Workout Manager");
-        workoutList = new JList<>();
-        model = new DefaultListModel<>();
         workoutPanel = new JPanel();
         exercisePanel = new JPanel();
         splitPane = new JSplitPane();
+        workoutModel = new DefaultListModel<>();
+        workoutJList = new JList<>(workoutModel);
+        exerciseModel = new DefaultListModel<>();
+        exerciseJList = new JList<>(exerciseModel);
 
-        workoutList.setModel(model);
-        //model.addElement(new Workout());
+        workoutJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        add(new JScrollPane(workoutJList));
 
         splitPane.setLeftComponent(workoutPanel);
-        splitPane.setRightComponent(exercisePanel);
         workoutPanel.add(new JLabel("Workouts"));
+        workoutPanel.add(workoutJList);
+
+        splitPane.setRightComponent(exercisePanel);
         exercisePanel.add(new JLabel("Exercises"));
+        exercisePanel.add(exerciseJList);
 
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 
-        workoutNameLabel = new JLabel("workout name:");
+        workoutNameLabel = new JLabel("workout:");
         workoutNameText = new JTextField(8);
-        exerciseNameLabel = new JLabel("exercise name:");
+        exerciseNameLabel = new JLabel("exercise:");
         exerciseNameText = new JTextField(8);
         exerciseRepsLabel = new JLabel("reps:");
         exerciseRepsText = new JTextField(4);
 
         addWorkoutButton = new JButton("add workout");
         addExerciseButton = new JButton("add exercise");
-        saveCollectionButton = new JButton("save");
-        loadCollectionButton = new JButton("load");
+        saveButton = new JButton("save");
+        loadButton = new JButton("load");
 
-        panel1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panel3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        textPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         gridPanel = new JPanel(new GridLayout(2, 1));
 
-        userTextArea = new JTextArea();
-        userTextArea.setEditable(false);
+        textPanel.add(workoutNameLabel);
+        textPanel.add(workoutNameText);
+        textPanel.add(exerciseNameLabel);
+        textPanel.add(exerciseNameText);
+        textPanel.add(exerciseRepsLabel);
+        textPanel.add(exerciseRepsText);
 
-        panel1.add(workoutNameLabel);
-        panel1.add(workoutNameText);
-        panel1.add(exerciseNameLabel);
-        panel1.add(exerciseNameText);
-        panel1.add(exerciseRepsLabel);
-        panel1.add(exerciseRepsText);
+        buttonPanel.add(addWorkoutButton);
+        buttonPanel.add(saveButton);
+        buttonPanel.add(loadButton);
+        buttonPanel.add(addExerciseButton);
 
-        panel2.add(addWorkoutButton);
-        panel2.add(addExerciseButton);
-
-        panel3.add(saveCollectionButton);
-        panel3.add(loadCollectionButton);
-
-        gridPanel.add(panel1);
-        gridPanel.add(panel2);
-        gridPanel.add(panel3);
+        gridPanel.add(textPanel);
+        gridPanel.add(buttonPanel);
 
         add(gridPanel, BorderLayout.SOUTH);
         add(splitPane, BorderLayout.CENTER);
 
+        workoutJList.getSelectionModel().addListSelectionListener(e -> {
+            workoutJList.getSelectedValue();
+            Workout w = collection.getWorkout(workoutJList.getSelectedValue());
+            exerciseModel.removeAllElements();
+            for (int i = 0; i < w.getExercises().size(); i++) {
+                String exerciseString = w.getExercises().get(i).getExerciseName()
+                        + w.getExercises().get(i).getReps();
+                exerciseModel.addElement(exerciseString);
+            }
+        });
+
         addWorkoutButton.setActionCommand("add workout");
         addExerciseButton.setActionCommand("add exercise");
-        saveCollectionButton.setActionCommand("save");
-        loadCollectionButton.setActionCommand("load");
+        saveButton.setActionCommand("save");
+        loadButton.setActionCommand("load");
 
         addWorkoutButton.addActionListener(this);
         addExerciseButton.addActionListener(this);
-        saveCollectionButton.addActionListener(this);
-        loadCollectionButton.addActionListener(this);
+        saveButton.addActionListener(this);
+        loadButton.addActionListener(this);
     }
 
     public static void main(String[] args) {
@@ -131,24 +144,21 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        Workout w = new Workout(workoutNameText.getText());
-        int repsStringToInt = Integer.parseInt(exerciseRepsText.getText());
-        Exercise exercise = new Exercise(exerciseNameText.getText(), repsStringToInt);
-
         if (actionEvent.getActionCommand().equals("add workout")) {
-
+            Workout w = new Workout(workoutNameText.getText());
             collection.addWorkout(w);
-            w.addExercise(exercise);
-            userTextArea.setText("");
-            userTextArea.append(w.getWorkoutName() + w.getExercises() + "\n");
+            workoutModel.addElement(workoutNameText.getText());
 
         } else if (actionEvent.getActionCommand().equals("add exercise")) {
-            for (int i = 0; i < collection.numWorkouts(); i++) {
-                if (w.getWorkoutName() == workoutNameText.getText()) {
-                    w.addExercise(exercise);
-                    userTextArea.append(w.getWorkoutName() + w.getExercises() + "\n");
-                }
-            }
+            workoutJList.getSelectionModel().addListSelectionListener(e -> {
+                workoutJList.getSelectedValue();
+            });
+            Workout w = collection.getWorkout(workoutJList.getSelectedValue());
+            int repsStringToInt = Integer.parseInt(exerciseRepsText.getText());
+            Exercise exercise = new Exercise(exerciseNameText.getText(), repsStringToInt);
+            w.addExercise(exercise);
+            exerciseModel.addElement(repsStringToInt + " " + exerciseNameText.getText());
+
         } else if (actionEvent.getActionCommand().equals("save")) {
             try {
                 jsonWriter.open();

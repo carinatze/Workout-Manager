@@ -1,28 +1,26 @@
 {
     "workouts": [
         {
-            "exercises": [{
-                "reps": 1,
-                "exercise": "e1"
-            }],
+            "exercises": [
+                {
+                    "reps": 2,
+                    "exercise": "squat"
+                },
+                {
+                    "reps": 8,
+                    "exercise": "deadlifts"
+                }
+            ],
             "level": "n/a",
-            "name": "w1"
+            "name": "butt"
         },
         {
             "exercises": [{
-                "reps": 2,
-                "exercise": "e2"
+                "reps": 7,
+                "exercise": "bicep curls"
             }],
             "level": "n/a",
-            "name": "w2"
-        },
-        {
-            "exercises": [{
-                "reps": 2,
-                "exercise": "e1"
-            }],
-            "level": "n/a",
-            "name": "w3"
+            "name": "arms"
         }
     ],
     "name": "My workout collection"
