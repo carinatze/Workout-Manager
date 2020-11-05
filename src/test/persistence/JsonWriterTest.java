@@ -50,6 +50,7 @@ public class JsonWriterTest extends JsonTest {
             WorkoutCollection wc = new WorkoutCollection("My workout collection");
             Workout workout1 = new Workout("workout1");
             Workout workout2 = new Workout("workout2");
+            workout1.setWorkoutLevel("beginner");
             wc.addWorkout(workout1);
             wc.addWorkout(workout2);
             Exercise exercise1 = new Exercise("e1", 1);
@@ -67,7 +68,7 @@ public class JsonWriterTest extends JsonTest {
             assertEquals("My workout collection", wc.getName());
             List<Workout> workouts = wc.getWorkouts();
             assertEquals(2, workouts.size());
-            checkWorkout("workout1", "n/a", workouts.get(0));
+            checkWorkout("workout1", "beginner", workouts.get(0));
             checkWorkout("workout2", "n/a", workouts.get(1));
 
             checkExercise("e1", 1, workout1.getExercises().getFirst());
