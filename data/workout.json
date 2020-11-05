@@ -9,9 +9,13 @@
                 {
                     "reps": 2,
                     "exercise": "e2"
+                },
+                {
+                    "reps": 6,
+                    "exercise": "e5"
                 }
             ],
-            "level": "n/a",
+            "level": "beginner",
             "name": "w1"
         },
         {
@@ -21,6 +25,25 @@
             }],
             "level": "n/a",
             "name": "w2"
+        },
+        {
+            "exercises": [],
+            "level": "n/a",
+            "name": "w3"
+        },
+        {
+            "exercises": [
+                {
+                    "reps": 3,
+                    "exercise": "r"
+                },
+                {
+                    "reps": 5,
+                    "exercise": "t"
+                }
+            ],
+            "level": "n/a",
+            "name": "w4"
         }
     ],
     "name": "My workout collection"
