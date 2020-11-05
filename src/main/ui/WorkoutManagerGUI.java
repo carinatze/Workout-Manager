@@ -117,8 +117,8 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
             Workout w = collection.getWorkout(workoutJList.getSelectedValue());
             exerciseModel.removeAllElements();
             for (int i = 0; i < w.getExercises().size(); i++) {
-                String exerciseString = w.getExercises().get(i).getExerciseName()
-                        + w.getExercises().get(i).getReps();
+                String exerciseString = w.getExercises().get(i).getReps() + " "
+                        + w.getExercises().get(i).getExerciseName();
                 exerciseModel.addElement(exerciseString);
             }
         });
@@ -137,7 +137,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     public static void main(String[] args) {
         WorkoutManagerGUI app = new WorkoutManagerGUI();
         app.setVisible(true);
-        app.setSize(600, 400);
+        app.setSize(500, 400);
         app.setLocation(200, 100);
         app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

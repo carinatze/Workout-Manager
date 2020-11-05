@@ -1,26 +1,34 @@
 {
     "workouts": [
         {
+            "exercises": [{
+                "reps": 16,
+                "exercise": "bench press"
+            }],
+            "level": "n/a",
+            "name": "day 1 "
+        },
+        {
             "exercises": [
                 {
-                    "reps": 2,
-                    "exercise": "squat"
+                    "reps": 16,
+                    "exercise": "poop"
                 },
                 {
-                    "reps": 8,
-                    "exercise": "deadlifts"
+                    "reps": 7,
+                    "exercise": "pee"
                 }
             ],
             "level": "n/a",
-            "name": "butt"
+            "name": "washroom"
         },
         {
             "exercises": [{
-                "reps": 7,
-                "exercise": "bicep curls"
+                "reps": 16,
+                "exercise": "soap"
             }],
             "level": "n/a",
-            "name": "arms"
+            "name": "shower"
         }
     ],
     "name": "My workout collection"
