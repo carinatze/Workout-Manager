@@ -184,6 +184,7 @@ public class JsonReader {
         String workoutName = jsonObject.getString("name");
         Workout workout = new Workout(workoutName);
         wc.addWorkout(workout);
+
         String level = workout.toJson().getString("level");
         workout.setWorkoutLevel(level);
         JSONArray exercises = jsonObject.getJSONArray("exercises");

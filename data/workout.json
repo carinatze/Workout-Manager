@@ -1,32 +1,28 @@
 {
     "workouts": [
         {
-            "exercises": [
-                {
-                    "reps": 8,
-                    "exercise": "Bench Press"
-                },
-                {
-                    "reps": 4,
-                    "exercise": "Squats"
-                }
-            ],
+            "exercises": [{
+                "reps": 1,
+                "exercise": "e1"
+            }],
             "level": "n/a",
-            "name": "Week 1 Day 1"
+            "name": "w1"
         },
         {
-            "exercises": [
-                {
-                    "reps": 10,
-                    "exercise": "Dumbbell Curls"
-                },
-                {
-                    "reps": 20,
-                    "exercise": "Squats"
-                }
-            ],
+            "exercises": [{
+                "reps": 2,
+                "exercise": "e2"
+            }],
             "level": "n/a",
-            "name": "Week 1 Day 3"
+            "name": "w2"
+        },
+        {
+            "exercises": [{
+                "reps": 2,
+                "exercise": "e1"
+            }],
+            "level": "n/a",
+            "name": "w3"
         }
     ],
     "name": "My workout collection"
