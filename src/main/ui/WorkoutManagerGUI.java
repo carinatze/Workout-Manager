@@ -24,10 +24,6 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     private JPanel textPanel;
     private JPanel buttonPanel;
     private JPanel gridPanel;
-    private JPanel workoutPanel;
-    private JPanel exercisePanel;
-
-    private JSplitPane splitPane;
 
     private JButton addWorkoutButton;
     private JButton addExerciseButton;
@@ -37,8 +33,6 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     private JTextField workoutNameText;
     private JTextField exerciseNameText;
     private JTextField exerciseRepsText;
-
-    private JFrame frame;
 
     private JList<String> workoutJList;
     private DefaultListModel<String> workoutModel;
@@ -55,7 +49,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
 
     // EFFECTS: gui constructor for workout manager
     public WorkoutManagerGUI() {
-        frame = new JFrame("Workout Manager");
+        new JFrame("Workout Manager");
         workoutModel = new DefaultListModel<>();
         workoutJList = new JList<>(workoutModel);
         exerciseModel = new DefaultListModel<>();
@@ -124,9 +118,10 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
 
     // EFFECTS: sets up layout and panels to GUI
     public void setUpLayout() {
-        workoutPanel = new JPanel();
-        exercisePanel = new JPanel();
-        splitPane = new JSplitPane();
+        JPanel workoutPanel = new JPanel();
+        JPanel exercisePanel = new JPanel();
+
+        JSplitPane splitPane = new JSplitPane();
 
         splitPane.setLeftComponent(workoutPanel);
         workoutPanel.add(new JLabel("Workouts"));
