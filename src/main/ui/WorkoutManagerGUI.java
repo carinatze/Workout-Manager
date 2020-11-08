@@ -88,6 +88,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    // EFFECTS: performs action when workout is selected
     public void selectionActionListener() {
         workoutJList.getSelectionModel().addListSelectionListener(e -> {
             workoutJList.getSelectedValue();
