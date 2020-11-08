@@ -153,20 +153,25 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        if (actionEvent.getActionCommand().equals("add workout")) {
-            addWorkoutAction();
+        switch (actionEvent.getActionCommand()) {
+            case "add workout":
+                addWorkoutAction();
 
-        } else if (actionEvent.getActionCommand().equals("add exercise")) {
-            workoutJList.getSelectionModel().addListSelectionListener(e -> {
-                workoutJList.getSelectedValue();
-            });
-            addExerciseAction();
+                break;
+            case "add exercise":
+                workoutJList.getSelectionModel().addListSelectionListener(e -> {
+                    workoutJList.getSelectedValue();
+                });
+                addExerciseAction();
 
-        } else if (actionEvent.getActionCommand().equals("save")) {
-            saveAction();
+                break;
+            case "save":
+                saveAction();
 
-        } else if (actionEvent.getActionCommand().equals("load")) {
-            loadAction();
+                break;
+            case "load":
+                loadAction();
+                break;
         }
     }
 

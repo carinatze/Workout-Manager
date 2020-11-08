@@ -27,10 +27,16 @@
             "name": "w2"
         },
         {
-            "exercises": [{
-                "reps": 2,
-                "exercise": "yep"
-            }],
+            "exercises": [
+                {
+                    "reps": 2,
+                    "exercise": "yep"
+                },
+                {
+                    "reps": 3,
+                    "exercise": "no"
+                }
+            ],
             "level": "n/a",
             "name": "w3"
         },
