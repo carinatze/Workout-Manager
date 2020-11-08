@@ -27,7 +27,10 @@
             "name": "w2"
         },
         {
-            "exercises": [],
+            "exercises": [{
+                "reps": 2,
+                "exercise": "yep"
+            }],
             "level": "n/a",
             "name": "w3"
         },
@@ -40,6 +43,10 @@
                 {
                     "reps": 5,
                     "exercise": "t"
+                },
+                {
+                    "reps": 5,
+                    "exercise": "y"
                 }
             ],
             "level": "n/a",
