@@ -21,6 +21,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     private JLabel exerciseNameLabel;
     private JLabel exerciseRepsLabel;
 
+    private JPanel titlePanel;
     private JPanel textPanel;
     private JPanel buttonPanel;
     private JPanel gridPanel;
@@ -49,7 +50,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
 
     // EFFECTS: gui constructor for workout manager
     public WorkoutManagerGUI() {
-        new JFrame("Workout Manager");
+        //new JFrame("Workout Manager");
         workoutModel = new DefaultListModel<>();
         workoutJList = new JList<>(workoutModel);
         exerciseModel = new DefaultListModel<>();
@@ -61,6 +62,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 
+        titlePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         textPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         gridPanel = new JPanel(new GridLayout(2, 1));
@@ -83,7 +85,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     public static void main(String[] args) {
         WorkoutManagerGUI app = new WorkoutManagerGUI();
         app.setVisible(true);
-        app.setSize(500, 400);
+        app.setSize(475, 300);
         app.setLocation(200, 100);
         app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -102,21 +104,6 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         });
     }
 
-    // EFFECTS: sets up buttons, labels and text fields
-    public void setUpButtons() {
-        workoutNameLabel = new JLabel("workout:");
-        workoutNameText = new JTextField(8);
-        exerciseNameLabel = new JLabel("exercise:");
-        exerciseNameText = new JTextField(8);
-        exerciseRepsLabel = new JLabel("reps:");
-        exerciseRepsText = new JTextField(4);
-
-        addWorkoutButton = new JButton("add workout");
-        addExerciseButton = new JButton("add exercise");
-        saveButton = new JButton("save");
-        loadButton = new JButton("load");
-    }
-
     // EFFECTS: sets up layout and panels to GUI
     public void setUpLayout() {
         JPanel workoutPanel = new JPanel();
@@ -132,6 +119,8 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         exercisePanel.add(new JLabel("Exercises"));
         exercisePanel.add(exerciseJList);
 
+        titlePanel.add(new JLabel("My Workout Manager"));
+
         textPanel.add(workoutNameLabel);
         textPanel.add(workoutNameText);
         textPanel.add(exerciseNameLabel);
@@ -139,16 +128,37 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         textPanel.add(exerciseRepsLabel);
         textPanel.add(exerciseRepsText);
 
-        buttonPanel.add(addWorkoutButton);
-        buttonPanel.add(saveButton);
-        buttonPanel.add(loadButton);
-        buttonPanel.add(addExerciseButton);
+//        buttonPanel.add(addWorkoutButton);
+//        buttonPanel.add(saveButton);
+//        buttonPanel.add(loadButton);
+//        buttonPanel.add(addExerciseButton);
 
         gridPanel.add(textPanel);
         gridPanel.add(buttonPanel);
 
+        add(titlePanel, BorderLayout.NORTH);
         add(gridPanel, BorderLayout.SOUTH);
         add(splitPane, BorderLayout.CENTER);
+    }
+
+    // EFFECTS: sets up buttons, labels and text fields
+    public void setUpButtons() {
+        workoutNameLabel = new JLabel("workout:");
+        workoutNameText = new JTextField(8);
+        exerciseNameLabel = new JLabel("exercise:");
+        exerciseNameText = new JTextField(8);
+        exerciseRepsLabel = new JLabel("reps:");
+        exerciseRepsText = new JTextField(4);
+
+        addWorkoutButton = new JButton("add workout");
+        addExerciseButton = new JButton("add exercise");
+        saveButton = new JButton("save");
+        loadButton = new JButton("load");
+
+        buttonPanel.add(addWorkoutButton);
+        buttonPanel.add(saveButton);
+        buttonPanel.add(loadButton);
+        buttonPanel.add(addExerciseButton);
     }
 
     @Override

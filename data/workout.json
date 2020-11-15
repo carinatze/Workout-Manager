@@ -35,6 +35,10 @@
                 {
                     "reps": 3,
                     "exercise": "no"
+                },
+                {
+                    "reps": 4,
+                    "exercise": "maybe"
                 }
             ],
             "level": "n/a",
