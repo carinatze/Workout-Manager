@@ -14,7 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 // citation: https://www.youtube.com/watch?v=iE8tZ0hn2Ws
-// gui class for workout manager
+// GUI class for workout manager
 public class WorkoutManagerGUI extends JFrame implements ActionListener {
 
     private JLabel workoutNameLabel;
@@ -50,7 +50,6 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
 
     // EFFECTS: gui constructor for workout manager
     public WorkoutManagerGUI() {
-        //new JFrame("Workout Manager");
         workoutModel = new DefaultListModel<>();
         workoutJList = new JList<>(workoutModel);
         exerciseModel = new DefaultListModel<>();
@@ -127,11 +126,6 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         textPanel.add(exerciseNameText);
         textPanel.add(exerciseRepsLabel);
         textPanel.add(exerciseRepsText);
-
-//        buttonPanel.add(addWorkoutButton);
-//        buttonPanel.add(saveButton);
-//        buttonPanel.add(loadButton);
-//        buttonPanel.add(addExerciseButton);
 
         gridPanel.add(textPanel);
         gridPanel.add(buttonPanel);
