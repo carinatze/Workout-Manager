@@ -61,6 +61,7 @@ public class WorkoutCollection implements Writable {
         return collection.get(0);
     }
 
+    // EFFECTS: returns true if working name given is found in the workout collection, false otherwise
     public boolean isWorkoutInCollection(String workoutName) {
         for (Workout workout : collection) {
             if (workoutName.equals(workout.getWorkoutName())) {
