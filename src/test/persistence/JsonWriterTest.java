@@ -42,8 +42,6 @@ public class JsonWriterTest extends JsonTest {
             assertEquals(0, wc.getWorkouts().size());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
-//        } catch (InvalidLevelException e) {
-//            fail("Exception should not have been thrown");
         }
     }
 
@@ -79,7 +77,7 @@ public class JsonWriterTest extends JsonTest {
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         } catch (InvalidLevelException e) {
-            fail("Exception should not have been thrown");
+            fail("Invalid Level exception should not have been thrown");
         }
     }
 }

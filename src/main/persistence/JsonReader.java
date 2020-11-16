@@ -132,7 +132,7 @@ import java.util.stream.Stream;
 import model.WorkoutCollection;
 import org.json.*;
 
-// code from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+// citation https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 // Represents a reader that reads workout from JSON data stored in file
 public class JsonReader {
     private String source;

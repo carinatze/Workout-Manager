@@ -82,6 +82,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         loadButton.addActionListener(this);
     }
 
+    // EFFECTS: creates a new workout manager GUI
     public static void main(String[] args) {
         WorkoutManagerGUI app = new WorkoutManagerGUI();
         app.setVisible(true);
@@ -223,8 +224,6 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
             }
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
-//        } catch (InvalidLevelException e) {
-//            System.out.println("invalid level set for workout");
         }
     }
 }
