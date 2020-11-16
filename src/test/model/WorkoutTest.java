@@ -1,5 +1,6 @@
 package model;
 
+import exception.InvalidLevelException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -59,24 +60,66 @@ public class WorkoutTest {
     }
 
     @Test
-    // sets workout level for a workout
+    // sets valid workout level for a workout
     public void testSetWorkoutLevel(){
         assertEquals("n/a", testWorkout2.getWorkoutLevel());
         assertEquals("workout2", testWorkout2.getWorkoutName());
-        testWorkout2.setWorkoutLevel("beginner");
-        assertEquals("beginner", testWorkout2.getWorkoutLevel());
-        assertEquals("workout2", testWorkout2.getWorkoutName());
+        try {
+            testWorkout2.setWorkoutLevel("beginner");
+            assertEquals("beginner", testWorkout2.getWorkoutLevel());
+            assertEquals("workout2", testWorkout2.getWorkoutName());
+        } catch (InvalidLevelException e) {
+            fail("Exception should not have been thrown");
+        }
     }
 
     @Test
-    // changes workout level to another level for a workout
+    // changes valid workout level to another valid level for a workout
     public void testSetWorkoutLevelChange(){
         assertEquals("n/a", testWorkout1.getWorkoutLevel());
         assertEquals("workout", testWorkout1.getWorkoutName());
-        testWorkout1.setWorkoutLevel("beginner");
-        assertEquals("beginner", testWorkout1.getWorkoutLevel());
-        testWorkout1.setWorkoutLevel("advanced");
+        try {
+            testWorkout1.setWorkoutLevel("beginner");
+            assertEquals("beginner", testWorkout1.getWorkoutLevel());
+        } catch (InvalidLevelException e) {
+            fail("Exception should not have been thrown");
+        }
+
+        try {
+            testWorkout1.setWorkoutLevel("advanced");
+        } catch (InvalidLevelException e) {
+            fail("Exception should not have been thrown");
+        }
         assertEquals("advanced", testWorkout1.getWorkoutLevel());
         assertEquals("workout", testWorkout1.getWorkoutName());
+    }
+
+    @Test
+    public void testSetWorkoutLevelInvalidException() {
+        assertEquals("n/a", testWorkout1.getWorkoutLevel());
+        try {
+            testWorkout1.setWorkoutLevel("invalid");
+            fail("Exception should have been thrown");
+        } catch (InvalidLevelException e) {
+            // pass
+        }
+    }
+
+    @Test
+    public void testSetWorkoutLevelValidToInvalidException() {
+        assertEquals("n/a", testWorkout1.getWorkoutLevel());
+        try {
+            testWorkout1.setWorkoutLevel("beginner");
+            assertEquals("beginner", testWorkout1.getWorkoutLevel());
+        } catch (InvalidLevelException e) {
+            fail("Exception should not have been thrown");
+        }
+        assertEquals("beginner", testWorkout1.getWorkoutLevel());
+        try {
+            testWorkout1.setWorkoutLevel("invalid");
+            fail("Exception should have been thrown");
+        } catch (InvalidLevelException e) {
+            // pass
+        }
     }
 }

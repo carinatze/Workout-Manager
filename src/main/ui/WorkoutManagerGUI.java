@@ -1,5 +1,6 @@
 package ui;
 
+import exception.InvalidLevelException;
 import model.Exercise;
 import model.Workout;
 import model.WorkoutCollection;
@@ -222,6 +223,8 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
             }
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
+//        } catch (InvalidLevelException e) {
+//            System.out.println("invalid level set for workout");
         }
     }
 }

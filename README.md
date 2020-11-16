@@ -36,3 +36,13 @@ them to stay active when they are feeling lazy or tired.
 
 - As a user, I want to be able to save my workout collection to file, and have the option to do so or not.
 - As a user, when I start the application, I want to be given the option to load my workout collection from a file.
+
+## Phase 4 Task 2
+I tested and designed the Workout class to be robust. The method setWorkoutLevel throws an InvalidLevelException when
+the level assigned is neither: beginner, intermediate, nor advanced. The test for the case where the exception is 
+expected is in the WorkoutTest class called testSetWorkoutLevelInvalidException. Another case where the exception is not
+expected is called testSetWorkoutLevelValidToInvalidException, where at first the workout was set to a valid level; thus, 
+no exception was expected, and changed to an invalid level, where the exception was later expected. 
+I also had to make changes to the addWorkout method in JsonReader class. This is where we caught the 
+InvalidLevelException when the user attempts to set the workout level, and if it is invalid, an exception would be 
+thrown and is caught in this method. The method prints out a statement indicating that the level is invalid. 

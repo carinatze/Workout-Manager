@@ -1,5 +1,6 @@
 package persistence;
 
+import exception.InvalidLevelException;
 import model.Workout;
 import model.WorkoutCollection;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,8 @@ class JsonReaderTest extends JsonTest {
             fail("IOException expected");
         } catch (IOException e) {
             // pass
+//        } catch (InvalidLevelException e) {
+//            // pass
         }
     }
 
@@ -33,6 +36,8 @@ class JsonReaderTest extends JsonTest {
             assertEquals(0, wc.getWorkouts().size());
         } catch (IOException e) {
             fail("Couldn't read from file");
+//        } catch (InvalidLevelException e) {
+//            fail("Exception should not have been thrown");
         }
     }
 
@@ -53,6 +58,8 @@ class JsonReaderTest extends JsonTest {
             assertEquals("e2", workouts.get(1).getExercises().getFirst().getExerciseName());
         } catch (IOException e) {
             fail("Couldn't read from file");
+//        } catch (InvalidLevelException e) {
+//            fail("Exception should not have been thrown");
         }
     }
 

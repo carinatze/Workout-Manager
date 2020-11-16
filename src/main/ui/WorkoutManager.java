@@ -1,5 +1,6 @@
 package ui;
 
+import exception.InvalidLevelException;
 import model.WorkoutCollection;
 import model.Exercise;
 import model.Workout;
@@ -29,7 +30,7 @@ public class WorkoutManager {
     private JsonReader jsonReader;
 
     // EFFECTS: runs the workout manager application
-    public WorkoutManager() throws FileNotFoundException {
+    public WorkoutManager() throws FileNotFoundException, InvalidLevelException {
         input = new Scanner(System.in);
         collection = new WorkoutCollection("My workout collection");
         workout = new Workout("new workout");
@@ -40,7 +41,7 @@ public class WorkoutManager {
 
     // MODIFIES: this
     // EFFECTS: processes user input
-    private void runWorkoutManager() {
+    private void runWorkoutManager() throws InvalidLevelException {
         boolean keepGoing = true;
         String command = null;
 
@@ -63,7 +64,7 @@ public class WorkoutManager {
 
     // MODIFIES: this
     // EFFECTS: processes user command
-    private void processCommand(String command) {
+    private void processCommand(String command) throws InvalidLevelException {
         if (command.equals(PRINT_WORKOUTS_COMMAND)) {
             printWorkouts();
         } else if (command.equals(SELECT_WORKOUT_COMMAND)) {
@@ -189,7 +190,11 @@ public class WorkoutManager {
     private void rateWorkout(Workout workout) {
         System.out.println("set " + workout.getWorkoutName() + " level as either: beginner, intermediate, or advanced");
         String level = input.next();
-        workout.setWorkoutLevel(level);
+        try {
+            workout.setWorkoutLevel(level);
+        } catch (InvalidLevelException e) {
+            System.out.println(level + " is not a valid level");
+        }
         System.out.println(workout.getWorkoutName() + " has been set to level: " + level);
         displayWorkoutMenu(workout);
     }
@@ -210,7 +215,7 @@ public class WorkoutManager {
 
     // MODIFIES: this
     // EFFECTS: loads collection from file
-    private void loadCollection() {
+    private void loadCollection() throws InvalidLevelException {
         try {
             collection = jsonReader.read();
             System.out.println("Loaded '" + collection.getName() + "' from " + JSON_STORE);

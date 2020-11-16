@@ -1,5 +1,6 @@
 package persistence;
 
+import exception.InvalidLevelException;
 import model.Exercise;
 import model.Workout;
 import model.WorkoutCollection;
@@ -41,6 +42,8 @@ public class JsonWriterTest extends JsonTest {
             assertEquals(0, wc.getWorkouts().size());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
+//        } catch (InvalidLevelException e) {
+//            fail("Exception should not have been thrown");
         }
     }
 
@@ -73,9 +76,9 @@ public class JsonWriterTest extends JsonTest {
 
             checkExercise("e1", 1, workout1.getExercises().getFirst());
             checkExercise("e2", 2, workout2.getExercises().getFirst());
-
-
         } catch (IOException e) {
+            fail("Exception should not have been thrown");
+        } catch (InvalidLevelException e) {
             fail("Exception should not have been thrown");
         }
     }

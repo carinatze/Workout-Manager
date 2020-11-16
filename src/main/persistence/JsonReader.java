@@ -119,6 +119,7 @@
 
 package persistence;
 
+import exception.InvalidLevelException;
 import model.Exercise;
 import model.Workout;
 
@@ -185,9 +186,12 @@ public class JsonReader {
         Workout workout = new Workout(workoutName);
         wc.addWorkout(workout);
 
-        //String level = workout.toJson().getString("level");
         String level = jsonObject.getString("level");
-        workout.setWorkoutLevel(level);
+        try {
+            workout.setWorkoutLevel(level);
+        } catch (InvalidLevelException e) {
+            System.out.println(level + " is an invalid level");
+        }
         JSONArray exercises = jsonObject.getJSONArray("exercises");
         for (Object exercise : exercises) {
             JSONObject nextExercise = (JSONObject) exercise;
