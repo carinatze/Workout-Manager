@@ -192,11 +192,11 @@ public class WorkoutManager {
         String level = input.next();
         try {
             workout.setWorkoutLevel(level);
+            System.out.println(workout.getWorkoutName() + " has been set to level: " + level);
+            displayWorkoutMenu(workout);
         } catch (InvalidLevelException e) {
             System.out.println(level + " is not a valid level");
         }
-        System.out.println(workout.getWorkoutName() + " has been set to level: " + level);
-        displayWorkoutMenu(workout);
     }
 
     // citation: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git

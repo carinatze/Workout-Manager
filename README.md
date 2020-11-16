@@ -46,3 +46,5 @@ no exception was expected, and changed to an invalid level, where the exception 
 I also had to make changes to the addWorkout method in JsonReader class. This is where we caught the 
 InvalidLevelException when the user attempts to set the workout level, and if it is invalid, an exception would be 
 thrown and is caught in this method. The method prints out a statement indicating that the level is invalid. 
+In addition, I added a try catch clause to the rateWorkout method in the WorkoutManager UI class. The method would
+print out that the given level was invalid, if it was not beginner, intermediate, nor advanced.
