@@ -1,6 +1,5 @@
 package ui;
 
-import exception.InvalidLevelException;
 import model.Exercise;
 import model.Workout;
 import model.WorkoutCollection;
@@ -187,6 +186,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         Workout w = new Workout(workoutNameText.getText());
         collection.addWorkout(w);
         workoutModel.addElement(workoutNameText.getText());
+        Toolkit.getDefaultToolkit().beep();
     }
 
     // MODIFIES: collection
@@ -197,6 +197,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         Exercise exercise = new Exercise(exerciseNameText.getText(), repsStringToInt);
         w.addExercise(exercise);
         exerciseModel.addElement(repsStringToInt + " " + exerciseNameText.getText());
+        Toolkit.getDefaultToolkit().beep();
     }
 
     // EFFECTS: saves GUI collection
@@ -205,6 +206,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
             jsonWriter.open();
             jsonWriter.write(collection);
             jsonWriter.close();
+            Toolkit.getDefaultToolkit().beep();
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }

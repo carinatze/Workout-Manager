@@ -1,67 +1,11 @@
 {
-    "workouts": [
-        {
-            "exercises": [
-                {
-                    "reps": 1,
-                    "exercise": "e1"
-                },
-                {
-                    "reps": 2,
-                    "exercise": "e2"
-                },
-                {
-                    "reps": 6,
-                    "exercise": "e5"
-                }
-            ],
-            "level": "beginner",
-            "name": "w1"
-        },
-        {
-            "exercises": [{
-                "reps": 4,
-                "exercise": "e4"
-            }],
-            "level": "n/a",
-            "name": "w2"
-        },
-        {
-            "exercises": [
-                {
-                    "reps": 2,
-                    "exercise": "yep"
-                },
-                {
-                    "reps": 3,
-                    "exercise": "no"
-                },
-                {
-                    "reps": 4,
-                    "exercise": "maybe"
-                }
-            ],
-            "level": "n/a",
-            "name": "w3"
-        },
-        {
-            "exercises": [
-                {
-                    "reps": 3,
-                    "exercise": "r"
-                },
-                {
-                    "reps": 5,
-                    "exercise": "t"
-                },
-                {
-                    "reps": 5,
-                    "exercise": "y"
-                }
-            ],
-            "level": "n/a",
-            "name": "w4"
-        }
-    ],
+    "workouts": [{
+        "exercises": [{
+            "reps": 1,
+            "exercise": "e1"
+        }],
+        "level": "n/a",
+        "name": "w1"
+    }],
     "name": "My workout collection"
 }
