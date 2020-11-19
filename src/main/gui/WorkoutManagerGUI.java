@@ -1,4 +1,4 @@
-package ui;
+package gui;
 
 import model.Exercise;
 import model.Workout;
@@ -21,10 +21,13 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     private JLabel exerciseNameLabel;
     private JLabel exerciseRepsLabel;
 
-    private JPanel titlePanel;
     private JPanel textPanel;
     private JPanel buttonPanel;
     private JPanel gridPanel;
+
+    private ImageIcon workoutImage;
+    private ImageIcon exerciseImage;
+    private ImageIcon saveImage;
 
     private JButton addWorkoutButton;
     private JButton addExerciseButton;
@@ -61,7 +64,6 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 
-        titlePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         textPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         gridPanel = new JPanel(new GridLayout(2, 1));
@@ -85,7 +87,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     public static void main(String[] args) {
         WorkoutManagerGUI app = new WorkoutManagerGUI();
         app.setVisible(true);
-        app.setSize(475, 300);
+        app.setSize(550, 300);
         app.setLocation(200, 100);
         app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -108,7 +110,6 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     public void setUpLayout() {
         JPanel workoutPanel = new JPanel();
         JPanel exercisePanel = new JPanel();
-
         JSplitPane splitPane = new JSplitPane();
 
         splitPane.setLeftComponent(workoutPanel);
@@ -118,8 +119,6 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         splitPane.setRightComponent(exercisePanel);
         exercisePanel.add(new JLabel("Exercises"));
         exercisePanel.add(exerciseJList);
-
-        titlePanel.add(new JLabel("My Workout Manager"));
 
         textPanel.add(workoutNameLabel);
         textPanel.add(workoutNameText);
@@ -131,13 +130,23 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         gridPanel.add(textPanel);
         gridPanel.add(buttonPanel);
 
-        add(titlePanel, BorderLayout.NORTH);
         add(gridPanel, BorderLayout.SOUTH);
         add(splitPane, BorderLayout.CENTER);
     }
 
+    private void loadImages() {
+        String sep = System.getProperty("file.separator");
+        workoutImage = new ImageIcon(System.getProperty("user.dir") + sep + "images" + sep
+                + "workout.png");
+        exerciseImage = new ImageIcon(System.getProperty("user.dir") + sep + "images" + sep
+                + "exercise.png");
+        saveImage = new ImageIcon(System.getProperty("user.dir") + sep + "images" + sep
+                + "save.png");
+    }
+
     // EFFECTS: sets up buttons, labels and text fields
     public void setUpButtons() {
+        loadImages();
         workoutNameLabel = new JLabel("workout:");
         workoutNameText = new JTextField(8);
         exerciseNameLabel = new JLabel("exercise:");
@@ -145,9 +154,18 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         exerciseRepsLabel = new JLabel("reps:");
         exerciseRepsText = new JTextField(4);
 
-        addWorkoutButton = new JButton("add workout");
-        addExerciseButton = new JButton("add exercise");
-        saveButton = new JButton("save");
+        addWorkoutButton = new JButton(workoutImage);
+        addWorkoutButton.setText("add workout");
+        addWorkoutButton.setHorizontalTextPosition(JButton.RIGHT);
+
+        addExerciseButton = new JButton(exerciseImage);
+        addExerciseButton.setText("add exercise");
+        addExerciseButton.setVerticalTextPosition(JButton.BOTTOM);
+
+        saveButton = new JButton(saveImage);
+        saveButton.setText("save");
+        saveButton.setVerticalTextPosition(JButton.BOTTOM);
+
         loadButton = new JButton("load");
 
         buttonPanel.add(addWorkoutButton);

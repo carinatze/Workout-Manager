@@ -1,11 +1,37 @@
 {
-    "workouts": [{
-        "exercises": [{
-            "reps": 1,
-            "exercise": "e1"
-        }],
-        "level": "n/a",
-        "name": "w1"
-    }],
+    "workouts": [
+        {
+            "exercises": [
+                {
+                    "reps": 1,
+                    "exercise": "e1"
+                },
+                {
+                    "reps": 3,
+                    "exercise": "e3"
+                },
+                {
+                    "reps": 4,
+                    "exercise": "e4"
+                }
+            ],
+            "level": "n/a",
+            "name": "w1"
+        },
+        {
+            "exercises": [
+                {
+                    "reps": 4,
+                    "exercise": "e4"
+                },
+                {
+                    "reps": 7,
+                    "exercise": "e7"
+                }
+            ],
+            "level": "n/a",
+            "name": "w2"
+        }
+    ],
     "name": "My workout collection"
 }
