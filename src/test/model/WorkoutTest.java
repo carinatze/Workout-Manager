@@ -114,7 +114,18 @@ public class WorkoutTest {
         } catch (InvalidLevelException e) {
             fail("Exception should not have been thrown");
         }
-        assertEquals("beginner", testWorkout1.getWorkoutLevel());
+        try {
+            testWorkout1.setWorkoutLevel("intermediate");
+            assertEquals("intermediate", testWorkout1.getWorkoutLevel());
+        } catch (InvalidLevelException e) {
+            fail("Exception should not have been thrown");
+        }
+        try {
+            testWorkout1.setWorkoutLevel("advanced");
+            assertEquals("advanced", testWorkout1.getWorkoutLevel());
+        } catch (InvalidLevelException e) {
+            fail("Exception should not have been thrown");
+        }
         try {
             testWorkout1.setWorkoutLevel("invalid");
             fail("Exception should have been thrown");
