@@ -242,6 +242,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
             for (Exercise e : collection.getWorkouts().get(0).getExercises()) {
                 exerciseModel.addElement(e.getReps() + " " + e.getExerciseName());
             }
+            Toolkit.getDefaultToolkit().beep();
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
