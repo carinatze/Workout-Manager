@@ -1,0 +1,10 @@
+{
+  "workouts": [
+    {
+      "exercises": [],
+      "level": "invalid",
+      "name": "workout"
+    }
+  ],
+  "name": "My workout collection"
+}

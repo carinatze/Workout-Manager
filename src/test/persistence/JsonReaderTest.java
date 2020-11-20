@@ -38,6 +38,18 @@ class JsonReaderTest extends JsonTest {
     }
 
     @Test
+    void testReaderInvalidLevelWorkoutCollection() {
+        JsonReader reader = new JsonReader("./data/testReaderInvalidLevelWorkoutCollection.json");
+        try {
+            WorkoutCollection wc = reader.read();
+            assertEquals("My workout collection", wc.getName());
+            assertEquals(1, wc.getWorkouts().size());
+        } catch (IOException e) {
+            fail("Couldn't read from file");
+        }
+    }
+
+    @Test
     void testReaderGeneralWorkoutCollection() {
         JsonReader reader = new JsonReader("./data/testReaderGeneralWorkoutCollection.json");
         try {

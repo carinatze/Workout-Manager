@@ -51,10 +51,10 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     public WorkoutManagerGUI() {
         initializeGraphics();
         initializeFields();
-
         setUpButtons();
         setUpLabels();
         setUpLayout();
+        
         selectionActionListener();
         setsActionCommands();
         addActionListeners();
