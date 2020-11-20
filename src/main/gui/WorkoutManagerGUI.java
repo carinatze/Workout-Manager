@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 // citation: https://www.youtube.com/watch?v=iE8tZ0hn2Ws
+// citation: https://github.students.cs.ubc.ca/CPSC210/C3-LectureLabStarter.git
 // GUI class for workout manager
 public class WorkoutManagerGUI extends JFrame implements ActionListener {
 
