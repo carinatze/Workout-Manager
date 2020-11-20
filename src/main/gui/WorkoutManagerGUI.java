@@ -51,7 +51,6 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     // Workout Instance Data:
     private WorkoutCollection collection = new WorkoutCollection("My workout collection");
 
-    // EFFECTS: gui constructor for workout manager
     public WorkoutManagerGUI() {
         initializeGraphics();
         initializeFields();
@@ -62,7 +61,6 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         setsActionCommands();
         addActionListeners();
     }
-
 
     // MODIFIES: this
     // EFFECTS: draws the JFrame window where this WorkoutManager will operate, and tools to manipulate this
@@ -103,7 +101,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
 
     // MODIFIES: this
     // EFFECTS: sets up buttons, labels and text fields
-    public void setUpButtons() {
+    private void setUpButtons() {
         loadImages();
         workoutNameLabel = new JLabel("workout:");
         workoutNameText = new JTextField(8);
@@ -175,7 +173,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
 
     // MODIFIES: this
     // EFFECTS: sets up layout and panels to GUI
-    public void setUpLayout() {
+    private void setUpLayout() {
         JPanel workoutPanel = new JPanel();
         JPanel exercisePanel = new JPanel();
         JSplitPane splitPane = new JSplitPane();

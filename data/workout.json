@@ -1,17 +1,37 @@
 {
-    "workouts": [{
-        "exercises": [
-            {
-                "reps": 10,
-                "exercise": "pop it"
-            },
-            {
-                "reps": 10,
-                "exercise": "twist it"
-            }
-        ],
-        "level": "n/a",
-        "name": "bop it"
-    }],
+    "workouts": [
+        {
+            "exercises": [
+                {
+                    "reps": 10,
+                    "exercise": "pop it"
+                },
+                {
+                    "reps": 10,
+                    "exercise": "twist it"
+                },
+                {
+                    "reps": 1,
+                    "exercise": "f"
+                }
+            ],
+            "level": "n/a",
+            "name": "bop it"
+        },
+        {
+            "exercises": [
+                {
+                    "reps": 1,
+                    "exercise": "f"
+                },
+                {
+                    "reps": 1,
+                    "exercise": "f"
+                }
+            ],
+            "level": "n/a",
+            "name": "h"
+        }
+    ],
     "name": "My workout collection"
 }
