@@ -1,9 +1,15 @@
 {
     "workouts": [{
-        "exercises": [{
-            "reps": 10,
-            "exercise": "pop it"
-        }],
+        "exercises": [
+            {
+                "reps": 10,
+                "exercise": "pop it"
+            },
+            {
+                "reps": 10,
+                "exercise": "twist it"
+            }
+        ],
         "level": "n/a",
         "name": "bop it"
     }],

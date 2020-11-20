@@ -53,29 +53,16 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
 
     // EFFECTS: gui constructor for workout manager
     public WorkoutManagerGUI() {
-        jsonWriter = new JsonWriter(JSON_STORE);
-        jsonReader = new JsonReader(JSON_STORE);
-
-//        textPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-//        buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-//        gridPanel = new JPanel(new GridLayout(2, 1));
         initializeGraphics();
-
         initializeFields();
-
-        workoutJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        add(new JScrollPane(workoutJList));
 
         setUpButtons();
         setUpLayout();
         selectionActionListener();
         setsActionCommands();
-
-        addWorkoutButton.addActionListener(this);
-        addExerciseButton.addActionListener(this);
-        saveButton.addActionListener(this);
-        loadButton.addActionListener(this);
+        addActionListeners();
     }
+
 
     // MODIFIES: this
     // EFFECTS: draws the JFrame window where this WorkoutManager will operate, and tools to manipulate this
@@ -84,81 +71,23 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         textPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         gridPanel = new JPanel(new GridLayout(2, 1));
+        add(new JScrollPane(workoutJList));
     }
 
     // MODIFIES: this
-    // EFFECTS:  instantiates workoutModel, exerciseModel with DefaultListModel
+    // EFFECTS:  instantiates jsonWriter, jsonReader stored in JSON_STORE
+    //           instantiates workoutModel, exerciseModel with DefaultListModel
     //           instantiates workoutJList, exerciseJList with JList
     //           this method is called by the WorkoutManagerGUI constructor
     private void initializeFields() {
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+
         workoutModel = new DefaultListModel<>();
         workoutJList = new JList<>(workoutModel);
         exerciseModel = new DefaultListModel<>();
         exerciseJList = new JList<>(exerciseModel);
-    }
-
-    // MODIFIES: this
-    // EFFECTS:  sets action commands to buttons
-    private void setsActionCommands() {
-        addWorkoutButton.setActionCommand("add workout");
-        addExerciseButton.setActionCommand("add exercise");
-        saveButton.setActionCommand("save");
-        loadButton.setActionCommand("load");
-    }
-
-    // EFFECTS: creates a new workout manager GUI
-    public static void main(String[] args) {
-        WorkoutManagerGUI app = new WorkoutManagerGUI();
-        app.setVisible(true);
-        app.setSize(550, 300);
-        app.setLocation(200, 100);
-        app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
-
-    // EFFECTS: selects workout and displays its exercises
-    public void selectionActionListener() {
-//        workoutJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//        add(new JScrollPane(workoutJList));
-
-        workoutJList.getSelectionModel().addListSelectionListener(e -> {
-            workoutJList.getSelectedValue();
-            Workout w = collection.getWorkout(workoutJList.getSelectedValue());
-            exerciseModel.removeAllElements();
-            for (int i = 0; i < w.getExercises().size(); i++) {
-                String exerciseString = w.getExercises().get(i).getReps() + " "
-                        + w.getExercises().get(i).getExerciseName();
-                exerciseModel.addElement(exerciseString);
-            }
-        });
-    }
-
-    // MODIFIES: this
-    // EFFECTS: sets up layout and panels to GUI
-    public void setUpLayout() {
-        JPanel workoutPanel = new JPanel();
-        JPanel exercisePanel = new JPanel();
-        JSplitPane splitPane = new JSplitPane();
-
-        splitPane.setLeftComponent(workoutPanel);
-        workoutPanel.add(new JLabel("Workouts"));
-        workoutPanel.add(workoutJList);
-
-        splitPane.setRightComponent(exercisePanel);
-        exercisePanel.add(new JLabel("Exercises"));
-        exercisePanel.add(exerciseJList);
-
-        textPanel.add(workoutNameLabel);
-        textPanel.add(workoutNameText);
-        textPanel.add(exerciseNameLabel);
-        textPanel.add(exerciseNameText);
-        textPanel.add(exerciseRepsLabel);
-        textPanel.add(exerciseRepsText);
-
-        gridPanel.add(textPanel);
-        gridPanel.add(buttonPanel);
-
-        add(gridPanel, BorderLayout.SOUTH);
-        add(splitPane, BorderLayout.CENTER);
+        workoutJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
     // EFFECTS: loads images
@@ -202,6 +131,77 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         buttonPanel.add(loadButton);
         buttonPanel.add(addExerciseButton);
     }
+
+    // MODIFIES: this
+    // EFFECTS:  sets action commands to buttons
+    private void setsActionCommands() {
+        addWorkoutButton.setActionCommand("add workout");
+        addExerciseButton.setActionCommand("add exercise");
+        saveButton.setActionCommand("save");
+        loadButton.setActionCommand("load");
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adds action listener to each button
+    private void addActionListeners() {
+        addWorkoutButton.addActionListener(this);
+        addExerciseButton.addActionListener(this);
+        saveButton.addActionListener(this);
+        loadButton.addActionListener(this);
+    }
+
+    // EFFECTS: creates a new workout manager GUI
+    public static void main(String[] args) {
+        WorkoutManagerGUI app = new WorkoutManagerGUI();
+        app.setVisible(true);
+        app.setSize(550, 300);
+        app.setLocation(200, 100);
+        app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    // EFFECTS: selects workout and displays its exercises
+    public void selectionActionListener() {
+        workoutJList.getSelectionModel().addListSelectionListener(e -> {
+            workoutJList.getSelectedValue();
+            Workout w = collection.getWorkout(workoutJList.getSelectedValue());
+            exerciseModel.removeAllElements();
+            for (int i = 0; i < w.getExercises().size(); i++) {
+                String exerciseString = w.getExercises().get(i).getReps() + " "
+                        + w.getExercises().get(i).getExerciseName();
+                exerciseModel.addElement(exerciseString);
+            }
+        });
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets up layout and panels to GUI
+    public void setUpLayout() {
+        JPanel workoutPanel = new JPanel();
+        JPanel exercisePanel = new JPanel();
+        JSplitPane splitPane = new JSplitPane();
+
+        splitPane.setLeftComponent(workoutPanel);
+        workoutPanel.add(new JLabel("Workouts"));
+        workoutPanel.add(workoutJList);
+
+        splitPane.setRightComponent(exercisePanel);
+        exercisePanel.add(new JLabel("Exercises"));
+        exercisePanel.add(exerciseJList);
+
+        textPanel.add(workoutNameLabel);
+        textPanel.add(workoutNameText);
+        textPanel.add(exerciseNameLabel);
+        textPanel.add(exerciseNameText);
+        textPanel.add(exerciseRepsLabel);
+        textPanel.add(exerciseRepsText);
+
+        gridPanel.add(textPanel);
+        gridPanel.add(buttonPanel);
+
+        add(gridPanel, BorderLayout.SOUTH);
+        add(splitPane, BorderLayout.CENTER);
+    }
+
 
     // EFFECTS: performs actions of buttons
     @Override
