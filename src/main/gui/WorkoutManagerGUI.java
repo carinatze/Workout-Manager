@@ -18,10 +18,6 @@ import java.io.IOException;
 // GUI class for workout manager
 public class WorkoutManagerGUI extends JFrame implements ActionListener {
 
-    private JLabel workoutNameLabel;
-    private JLabel exerciseNameLabel;
-    private JLabel exerciseRepsLabel;
-
     private JPanel textPanel;
     private JPanel buttonPanel;
     private JPanel gridPanel;
@@ -57,6 +53,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         initializeFields();
 
         setUpButtons();
+        setUpLabels();
         setUpLayout();
         selectionActionListener();
         setsActionCommands();
@@ -101,16 +98,31 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     }
 
     // MODIFIES: this
-    // EFFECTS: sets up buttons, labels and text fields
-    private void setUpButtons() {
-        loadImages();
-        workoutNameLabel = new JLabel("workout:");
+    // EFFECTS: instantiates and add labels and text fields in JFrame window
+    private void setUpLabels() {
+        JLabel workoutNameLabel = new JLabel("workout:");
         workoutNameText = new JTextField(8);
-        exerciseNameLabel = new JLabel("exercise:");
+        JLabel exerciseNameLabel = new JLabel("exercise:");
         exerciseNameText = new JTextField(8);
-        exerciseRepsLabel = new JLabel("reps:");
+        JLabel exerciseRepsLabel = new JLabel("reps:");
         exerciseRepsText = new JTextField(4);
 
+        textPanel.add(workoutNameLabel);
+        textPanel.add(workoutNameText);
+        textPanel.add(exerciseNameLabel);
+        textPanel.add(exerciseNameText);
+        textPanel.add(exerciseRepsLabel);
+        textPanel.add(exerciseRepsText);
+
+        gridPanel.add(textPanel);
+        gridPanel.add(buttonPanel);
+        add(gridPanel, BorderLayout.SOUTH);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets up buttons in JFrame window
+    private void setUpButtons() {
+        loadImages();
         addWorkoutButton = new JButton(workoutImage);
         addWorkoutButton.setText("add workout");
         addWorkoutButton.setHorizontalTextPosition(JButton.RIGHT);
@@ -158,7 +170,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    // EFFECTS: selects workout and displays its exercises
+    // EFFECTS: selects a workout and displays its exercises in right panel of JFrame window
     public void selectionActionListener() {
         workoutJList.getSelectionModel().addListSelectionListener(e -> {
             workoutJList.getSelectedValue();
@@ -173,7 +185,8 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     }
 
     // MODIFIES: this
-    // EFFECTS: sets up layout and panels to GUI
+    // EFFECTS: sets up split pane layout
+    //          adds exercise and workout panel to GUI
     private void setUpLayout() {
         JPanel workoutPanel = new JPanel();
         JPanel exercisePanel = new JPanel();
@@ -187,20 +200,8 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         exercisePanel.add(new JLabel("Exercises"));
         exercisePanel.add(exerciseJList);
 
-        textPanel.add(workoutNameLabel);
-        textPanel.add(workoutNameText);
-        textPanel.add(exerciseNameLabel);
-        textPanel.add(exerciseNameText);
-        textPanel.add(exerciseRepsLabel);
-        textPanel.add(exerciseRepsText);
-
-        gridPanel.add(textPanel);
-        gridPanel.add(buttonPanel);
-
-        add(gridPanel, BorderLayout.SOUTH);
         add(splitPane, BorderLayout.CENTER);
     }
-
 
     // EFFECTS: performs actions of buttons
     @Override
@@ -227,8 +228,8 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         }
     }
 
-    // MODIFIES: collection
-    // EFFECTS: adds workout to the workout collection
+    // MODIFIES: this
+    // EFFECTS: adds new workout to the workout collection
     public void addWorkoutAction() {
         Workout w = new Workout(workoutNameText.getText());
         collection.addWorkout(w);
@@ -236,9 +237,9 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         Toolkit.getDefaultToolkit().beep();
     }
 
-    // REQUIRES: workout to be selected
-    // MODIFIES: collection
-    // EFFECTS: adds exercise to selected workout
+    // REQUIRES: workout != null
+    // MODIFIES: this
+    // EFFECTS: adds new exercise to selected workout
     public void addExerciseAction() {
         Workout w = collection.getWorkout(workoutJList.getSelectedValue());
         int repsStringToInt = Integer.parseInt(exerciseRepsText.getText());
@@ -249,7 +250,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     }
 
     // MODIFIES: this
-    // EFFECTS: saves GUI collection
+    // EFFECTS: saves GUI collection to JSON_STORE
     public void saveAction() {
         try {
             jsonWriter.open();

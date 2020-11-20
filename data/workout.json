@@ -13,6 +13,10 @@
                 {
                     "reps": 1,
                     "exercise": "f"
+                },
+                {
+                    "reps": 9,
+                    "exercise": "j"
                 }
             ],
             "level": "n/a",
@@ -27,10 +31,19 @@
                 {
                     "reps": 1,
                     "exercise": "f"
+                },
+                {
+                    "reps": 22,
+                    "exercise": "ks"
                 }
             ],
             "level": "n/a",
             "name": "h"
+        },
+        {
+            "exercises": [],
+            "level": "n/a",
+            "name": "jbk"
         }
     ],
     "name": "My workout collection"
