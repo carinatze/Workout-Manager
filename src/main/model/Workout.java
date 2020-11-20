@@ -32,7 +32,8 @@ public class Workout implements Writable {
     // MODIFIES: this
     // EFFECTS: sets workout level
     public void setWorkoutLevel(String level) throws InvalidLevelException {
-        if (level.equals("beginner") || level.equals("intermediate") || level.equals("advanced")) {
+        if (level.equals("beginner") || level.equals("intermediate") || level.equals("advance") 
+                || level.equals("n/a")) {
             this.workoutLevel = level;
         } else {
             throw new InvalidLevelException();

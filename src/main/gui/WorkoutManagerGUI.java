@@ -53,34 +53,57 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
 
     // EFFECTS: gui constructor for workout manager
     public WorkoutManagerGUI() {
-        workoutModel = new DefaultListModel<>();
-        workoutJList = new JList<>(workoutModel);
-        exerciseModel = new DefaultListModel<>();
-        exerciseJList = new JList<>(exerciseModel);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+
+//        textPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+//        buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+//        gridPanel = new JPanel(new GridLayout(2, 1));
+        initializeGraphics();
+
+        initializeFields();
 
         workoutJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         add(new JScrollPane(workoutJList));
 
-        jsonWriter = new JsonWriter(JSON_STORE);
-        jsonReader = new JsonReader(JSON_STORE);
-
-        textPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        gridPanel = new JPanel(new GridLayout(2, 1));
-
         setUpButtons();
         setUpLayout();
         selectionActionListener();
-
-        addWorkoutButton.setActionCommand("add workout");
-        addExerciseButton.setActionCommand("add exercise");
-        saveButton.setActionCommand("save");
-        loadButton.setActionCommand("load");
+        setsActionCommands();
 
         addWorkoutButton.addActionListener(this);
         addExerciseButton.addActionListener(this);
         saveButton.addActionListener(this);
         loadButton.addActionListener(this);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: draws the JFrame window where this WorkoutManager will operate, and tools to manipulate this
+    //          workout manager
+    private void initializeGraphics() {
+        textPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        gridPanel = new JPanel(new GridLayout(2, 1));
+    }
+
+    // MODIFIES: this
+    // EFFECTS:  instantiates workoutModel, exerciseModel with DefaultListModel
+    //           instantiates workoutJList, exerciseJList with JList
+    //           this method is called by the WorkoutManagerGUI constructor
+    private void initializeFields() {
+        workoutModel = new DefaultListModel<>();
+        workoutJList = new JList<>(workoutModel);
+        exerciseModel = new DefaultListModel<>();
+        exerciseJList = new JList<>(exerciseModel);
+    }
+
+    // MODIFIES: this
+    // EFFECTS:  sets action commands to buttons
+    private void setsActionCommands() {
+        addWorkoutButton.setActionCommand("add workout");
+        addExerciseButton.setActionCommand("add exercise");
+        saveButton.setActionCommand("save");
+        loadButton.setActionCommand("load");
     }
 
     // EFFECTS: creates a new workout manager GUI
@@ -92,8 +115,11 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    // EFFECTS: performs action when workout is selected
+    // EFFECTS: selects workout and displays its exercises
     public void selectionActionListener() {
+//        workoutJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+//        add(new JScrollPane(workoutJList));
+
         workoutJList.getSelectionModel().addListSelectionListener(e -> {
             workoutJList.getSelectedValue();
             Workout w = collection.getWorkout(workoutJList.getSelectedValue());
@@ -106,6 +132,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         });
     }
 
+    // MODIFIES: this
     // EFFECTS: sets up layout and panels to GUI
     public void setUpLayout() {
         JPanel workoutPanel = new JPanel();
@@ -134,6 +161,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         add(splitPane, BorderLayout.CENTER);
     }
 
+    // EFFECTS: loads images
     private void loadImages() {
         String sep = System.getProperty("file.separator");
         workoutImage = new ImageIcon(System.getProperty("user.dir") + sep + "images" + sep
@@ -144,6 +172,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
                 + "save.png");
     }
 
+    // MODIFIES: this
     // EFFECTS: sets up buttons, labels and text fields
     public void setUpButtons() {
         loadImages();
@@ -174,6 +203,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         buttonPanel.add(addExerciseButton);
     }
 
+    // EFFECTS: performs actions of buttons
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         switch (actionEvent.getActionCommand()) {
@@ -207,6 +237,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         Toolkit.getDefaultToolkit().beep();
     }
 
+    // REQUIRES: workout to be selected
     // MODIFIES: collection
     // EFFECTS: adds exercise to selected workout
     public void addExerciseAction() {
@@ -218,6 +249,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         Toolkit.getDefaultToolkit().beep();
     }
 
+    // MODIFIES: this
     // EFFECTS: saves GUI collection
     public void saveAction() {
         try {
@@ -230,6 +262,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         }
     }
 
+    // MODIFIES: this
     // EFFECTS: loads previously saved collection to GUI
     public void loadAction() {
         try {
