@@ -54,7 +54,8 @@ setWorkoutLevel method, and tests the case where no exception was expected to be
 ## Phase 4 Task 3
 If I had more time to work on the project, I would refactor my code to reduce coupling and increase cohesion. I would 
 increase cohesion in my WorkoutManagerGUI class and split the different responsibilities of each GUI aspect into 
-different sub-classes. In addition, I would try to decrease the amount of coupling between the classes by aiming
-to reduce the dependency among the classes. 
-Another design choice I would implement if I had more time would be to implement Java's Observer, so that the user would
-be notified every time a new workout was added to their collection.
+different sub-classes to adhere to the Single Responsibility Principle. For example, a class handling all actions of 
+the buttons, another class setting up images, and another class setting up the layout, so that the WorkoutMangerGUI is 
+not super long in length. In addition, I would try to decrease the amount of coupling between the classes by aiming to 
+reduce the dependency among the classes. Another design choice I would implement if I had more time would be to 
+implement Java's Observer, so that the user would be notified every time a new workout was added to their collection.

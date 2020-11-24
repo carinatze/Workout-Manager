@@ -46,7 +46,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     private JsonReader jsonReader;
 
     // Workout Instance Data:
-    private WorkoutCollection collection = new WorkoutCollection("My workout collection");
+    private WorkoutCollection collection;
 
     public WorkoutManagerGUI() {
         initializeGraphics();
@@ -60,14 +60,6 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         addActionListeners();
     }
 
-//    public static void main(String[] args) {
-//        WorkoutManagerGUI app = new WorkoutManagerGUI();
-//        app.setVisible(true);
-//        app.setSize(550, 300);
-//        app.setLocation(200, 100);
-//        app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//    }
-
     // MODIFIES: this
     // EFFECTS: draws the JFrame window where this WorkoutManager will operate, and tools to manipulate this
     //          workout manager
@@ -79,11 +71,13 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     }
 
     // MODIFIES: this
-    // EFFECTS:  instantiates jsonWriter, jsonReader stored in JSON_STORE
+    // EFFECTS:  instantiates a new WorkoutCollection with name "My workout collection"
+    //           instantiates jsonWriter, jsonReader stored in JSON_STORE
     //           instantiates workoutModel, exerciseModel with DefaultListModel
     //           instantiates workoutJList, exerciseJList with JList
     //           this method is called by the WorkoutManagerGUI constructor
     private void initializeFields() {
+        collection = new WorkoutCollection("My workout collection");
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 

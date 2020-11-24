@@ -23,8 +23,8 @@ public class WorkoutManager {
     private static final String GO_BACK_COMMAND = "b";
 
     private static final String JSON_STORE = "./data/workout.json";
-    private WorkoutCollection collection;
     private Scanner input;
+    private WorkoutCollection collection;
     private Workout workout;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
