@@ -50,3 +50,11 @@ In addition, I added a try catch clause to the rateWorkout method in the Workout
 print out that the given level was invalid, if it was not beginner, intermediate, nor advanced. A catch clause was added
 to the method: testWriterGeneralWorkoutCollection in the test class for Json writer because it called on the 
 setWorkoutLevel method, and tests the case where no exception was expected to be thrown.  
+
+## Phase 4 Task 3
+If I had more time to work on the project, I would refactor my code to reduce coupling and increase cohesion. I would 
+increase cohesion in my WorkoutManagerGUI class and split the different responsibilities of each GUI aspect into 
+different sub-classes. In addition, I would try to decrease the amount of coupling between the classes by aiming
+to reduce the dependency among the classes. 
+Another design choice I would implement if I had more time would be to implement Java's Observer, so that the user would
+be notified every time a new workout was added to their collection.

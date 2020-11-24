@@ -60,6 +60,14 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         addActionListeners();
     }
 
+//    public static void main(String[] args) {
+//        WorkoutManagerGUI app = new WorkoutManagerGUI();
+//        app.setVisible(true);
+//        app.setSize(550, 300);
+//        app.setLocation(200, 100);
+//        app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//    }
+
     // MODIFIES: this
     // EFFECTS: draws the JFrame window where this WorkoutManager will operate, and tools to manipulate this
     //          workout manager

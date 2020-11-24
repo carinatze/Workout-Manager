@@ -21,6 +21,10 @@
                 {
                     "reps": 1,
                     "exercise": "k"
+                },
+                {
+                    "reps": 345,
+                    "exercise": "jnk"
                 }
             ],
             "level": "n/a",
@@ -39,13 +43,26 @@
                 {
                     "reps": 22,
                     "exercise": "ks"
+                },
+                {
+                    "reps": 345,
+                    "exercise": "jnk"
                 }
             ],
             "level": "n/a",
             "name": "h"
         },
         {
-            "exercises": [],
+            "exercises": [
+                {
+                    "reps": 345,
+                    "exercise": "jnk"
+                },
+                {
+                    "reps": 345,
+                    "exercise": "jnk"
+                }
+            ],
             "level": "n/a",
             "name": "jbk"
         },
@@ -66,6 +83,20 @@
             ],
             "level": "n/a",
             "name": "ms"
+        },
+        {
+            "exercises": [
+                {
+                    "reps": 2,
+                    "exercise": "gerald"
+                },
+                {
+                    "reps": 3,
+                    "exercise": "caris"
+                }
+            ],
+            "level": "n/a",
+            "name": "gladys"
         }
     ],
     "name": "My workout collection"
