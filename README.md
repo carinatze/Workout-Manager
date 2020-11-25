@@ -45,11 +45,12 @@ expected is called testSetWorkoutLevelValidToInvalidException, where at first th
 no exception was expected, and changed to an invalid level, where the exception was later expected. 
 I also had to make changes to the addWorkout method in JsonReader class. This is where we caught the 
 InvalidLevelException when the user attempts to set the workout level, and if it is invalid, an exception would be 
-thrown and is caught in this method. The method prints out a statement indicating that the level is invalid. 
+thrown and is caught in this method. The console prints out a statement indicating that the level is invalid. 
 In addition, I added a try catch clause to the rateWorkout method in the WorkoutManager UI class. The method would
 print out that the given level was invalid, if it was not beginner, intermediate, nor advanced. A catch clause was added
 to the method: testWriterGeneralWorkoutCollection in the test class for Json writer because it called on the 
-setWorkoutLevel method, and tests the case where no exception was expected to be thrown.  
+setWorkoutLevel method, and tests the case where no exception was expected to be thrown. The WorkoutManagerGUI class 
+ensures that whenever an invalid workout level was set, the console would print out "___ is an invalid workout level."
 
 ## Phase 4 Task 3
 If I had more time to work on the project, I would refactor my code to reduce coupling and increase cohesion. I would 
@@ -59,4 +60,5 @@ the buttons, another class setting up images, and another class setting up the l
 not super long in length. In addition, I would try to decrease the amount of coupling between the classes by aiming to 
 reduce the dependency among the classes. Another design choice I would implement if I had more time would be to 
 implement Java's Observer, so that the user would be notified every time a new workout was added to their collection.
-adding level through drop down menu
+Also, when adding level I would add a drop down menu instead of typing it in. This would ensure the user does nOt add an 
+invalid workout.
