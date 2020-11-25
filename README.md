@@ -56,9 +56,12 @@ ensures that whenever an invalid workout level was set, the console would print 
 If I had more time to work on the project, I would refactor my code to reduce coupling and increase cohesion. I would 
 increase cohesion in my WorkoutManagerGUI class and split the different responsibilities of each GUI aspect into 
 different sub-classes to adhere to the Single Responsibility Principle. For example, a class handling all actions of 
-the buttons, another class setting up images, and another class setting up the layout, so that the WorkoutMangerGUI is 
-not super long in length. In addition, I would try to decrease the amount of coupling between the classes by aiming to 
-reduce the dependency among the classes. Another design choice I would implement if I had more time would be to 
-implement Java's Observer, so that the user would be notified every time a new workout was added to their collection.
-Also, when adding level I would add a drop down menu instead of typing it in. This would ensure the user does nOt add an 
-invalid workout.
+the buttons-- ButtonGUI, another class setting up images --ImageGUI, and another class setting up the layout 
+--LayoutGUI, so that the WorkoutMangerGUI is not super long in length. 
+In addition, I would try to decrease the amount of coupling between the classes by aiming to 
+reduce the dependency among the classes. For instance, I would have the WorkoutManager only have a field of 
+WorkoutCollection not Workout to reduce coupling because Workout can be accessed through Workout Collection.
+Another design choice I would implement if I had more time would be to implement Java's Observer, so that the user 
+would be notified every time a new workout was added to their collection.
+Also, when adding level I would add a drop down menu instead of typing it in. This would ensure the user does not add an 
+invalid workout, and can only choose from a list of three levels.
