@@ -1,5 +1,6 @@
 package gui;
 
+import exception.InvalidLevelException;
 import model.Exercise;
 import model.Workout;
 import model.WorkoutCollection;
@@ -25,12 +26,15 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     private ImageIcon workoutImage;
     private ImageIcon exerciseImage;
     private ImageIcon saveImage;
+    private ImageIcon levelImage;
 
     private JButton addWorkoutButton;
     private JButton addExerciseButton;
     private JButton saveButton;
     private JButton loadButton;
+    private JButton setLevelButton;
 
+    private JTextField workoutLevelText;
     private JTextField workoutNameText;
     private JTextField exerciseNameText;
     private JTextField exerciseRepsText;
@@ -91,6 +95,8 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     // EFFECTS: loads images
     private void loadImages() {
         String sep = System.getProperty("file.separator");
+        levelImage = new ImageIcon(System.getProperty("user.dir") + sep + "images" + sep
+                + "level.png");
         workoutImage = new ImageIcon(System.getProperty("user.dir") + sep + "images" + sep
                 + "workout.png");
         exerciseImage = new ImageIcon(System.getProperty("user.dir") + sep + "images" + sep
@@ -102,6 +108,8 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     // MODIFIES: this
     // EFFECTS: instantiates and add labels and text fields in JFrame window
     private void setUpLabels() {
+        JLabel workoutLevelLabel = new JLabel("workout level:");
+        workoutLevelText = new JTextField(8);
         JLabel workoutNameLabel = new JLabel("workout:");
         workoutNameText = new JTextField(8);
         JLabel exerciseNameLabel = new JLabel("exercise:");
@@ -109,6 +117,8 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         JLabel exerciseRepsLabel = new JLabel("reps:");
         exerciseRepsText = new JTextField(4);
 
+        textPanel.add(workoutLevelLabel);
+        textPanel.add(workoutLevelText);
         textPanel.add(workoutNameLabel);
         textPanel.add(workoutNameText);
         textPanel.add(exerciseNameLabel);
@@ -125,6 +135,10 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     // EFFECTS: sets up buttons in JFrame window
     private void setUpButtons() {
         loadImages();
+        setLevelButton = new JButton(levelImage);
+        setLevelButton.setText("set level");
+        setLevelButton.setHorizontalTextPosition(JButton.RIGHT);
+
         addWorkoutButton = new JButton(workoutImage);
         addWorkoutButton.setText("add workout");
         addWorkoutButton.setHorizontalTextPosition(JButton.RIGHT);
@@ -139,6 +153,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
 
         loadButton = new JButton("load");
 
+        buttonPanel.add(setLevelButton);
         buttonPanel.add(addWorkoutButton);
         buttonPanel.add(saveButton);
         buttonPanel.add(loadButton);
@@ -148,6 +163,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     // MODIFIES: this
     // EFFECTS:  sets action commands to buttons
     private void setsActionCommands() {
+        setLevelButton.setActionCommand("set level");
         addWorkoutButton.setActionCommand("add workout");
         addExerciseButton.setActionCommand("add exercise");
         saveButton.setActionCommand("save");
@@ -157,6 +173,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     // MODIFIES: this
     // EFFECTS: adds action listener to each button
     private void addActionListeners() {
+        setLevelButton.addActionListener(this);
         addWorkoutButton.addActionListener(this);
         addExerciseButton.addActionListener(this);
         saveButton.addActionListener(this);
@@ -200,6 +217,9 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         switch (actionEvent.getActionCommand()) {
+            case "set level" :
+                addWorkoutLevelAction();
+                break;
             case "add workout":
                 addWorkoutAction();
 
@@ -219,6 +239,20 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
                 loadAction();
                 break;
         }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets level of the workout selected to one of: beginner, intermediate, or advanced
+    public void addWorkoutLevelAction() {
+        Workout w = collection.getWorkout(workoutJList.getSelectedValue());
+        try {
+            w.setWorkoutLevel(workoutLevelText.getText());
+            workoutModel.setElementAt(w.getWorkoutName() + ":" + workoutLevelText.getText(),
+                    workoutJList.getSelectedIndex());
+        } catch (InvalidLevelException e) {
+            System.out.println(workoutLevelText.getText() + " is an invalid workout level");
+        }
+        Toolkit.getDefaultToolkit().beep();
     }
 
     // MODIFIES: this
@@ -263,7 +297,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
             exerciseModel.removeAllElements();
             collection = jsonReader.read();
             for (Workout w : collection.getWorkouts()) {
-                workoutModel.addElement(w.getWorkoutName());
+                workoutModel.addElement(w.getWorkoutName() + ":" + w.getWorkoutLevel());
             }
             for (Exercise e : collection.getWorkouts().get(0).getExercises()) {
                 exerciseModel.addElement(e.getReps() + " " + e.getExerciseName());

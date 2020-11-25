@@ -27,7 +27,7 @@
                     "exercise": "jnk"
                 }
             ],
-            "level": "n/a",
+            "level": "beginner",
             "name": "bop it"
         },
         {
@@ -49,7 +49,7 @@
                     "exercise": "jnk"
                 }
             ],
-            "level": "n/a",
+            "level": "intermediate",
             "name": "h"
         },
         {
@@ -97,6 +97,14 @@
             ],
             "level": "n/a",
             "name": "gladys"
+        },
+        {
+            "exercises": [{
+                "reps": 2,
+                "exercise": "eww"
+            }],
+            "level": "beginner",
+            "name": "new"
         }
     ],
     "name": "My workout collection"

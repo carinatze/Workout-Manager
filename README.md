@@ -59,3 +59,4 @@ the buttons, another class setting up images, and another class setting up the l
 not super long in length. In addition, I would try to decrease the amount of coupling between the classes by aiming to 
 reduce the dependency among the classes. Another design choice I would implement if I had more time would be to 
 implement Java's Observer, so that the user would be notified every time a new workout was added to their collection.
+adding level through drop down menu
