@@ -3,108 +3,25 @@
         {
             "exercises": [
                 {
-                    "reps": 10,
-                    "exercise": "pop it"
-                },
-                {
-                    "reps": 10,
-                    "exercise": "twist it"
-                },
-                {
                     "reps": 1,
-                    "exercise": "f"
+                    "exercise": "e1"
                 },
-                {
-                    "reps": 9,
-                    "exercise": "j"
-                },
-                {
-                    "reps": 1,
-                    "exercise": "k"
-                },
-                {
-                    "reps": 345,
-                    "exercise": "jnk"
-                }
-            ],
-            "level": "beginner",
-            "name": "bop it"
-        },
-        {
-            "exercises": [
-                {
-                    "reps": 1,
-                    "exercise": "f"
-                },
-                {
-                    "reps": 1,
-                    "exercise": "f"
-                },
-                {
-                    "reps": 22,
-                    "exercise": "ks"
-                },
-                {
-                    "reps": 345,
-                    "exercise": "jnk"
-                }
-            ],
-            "level": "intermediate",
-            "name": "h"
-        },
-        {
-            "exercises": [
-                {
-                    "reps": 345,
-                    "exercise": "jnk"
-                },
-                {
-                    "reps": 345,
-                    "exercise": "jnk"
-                }
-            ],
-            "level": "n/a",
-            "name": "jbk"
-        },
-        {
-            "exercises": [
-                {
-                    "reps": 1,
-                    "exercise": "k"
-                },
-                {
-                    "reps": 1,
-                    "exercise": "k"
-                },
-                {
-                    "reps": 1,
-                    "exercise": "k"
-                }
-            ],
-            "level": "n/a",
-            "name": "ms"
-        },
-        {
-            "exercises": [
                 {
                     "reps": 2,
-                    "exercise": "gerald"
+                    "exercise": "e2"
                 },
                 {
                     "reps": 3,
-                    "exercise": "caris"
+                    "exercise": "e3"
                 }
             ],
-            "level": "n/a",
-            "name": "gladys"
+            "level": "beginner",
+            "name": "w1"
         },
         {
-            "exercises": [{
-                "reps": 2,
-                "exercise": "eww"
-            }],
-            "level": "beginner",
-            "name": "new"
+            "exercises": [],
+            "level": "intermediate",
+            "name": "w2"
         }
     ],
     "name": "My workout collection"

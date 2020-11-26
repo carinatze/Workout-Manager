@@ -55,6 +55,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     public WorkoutManagerGUI() {
         initializeGraphics();
         initializeFields();
+
         setUpButtons();
         setUpLabels();
         setUpLayout();
@@ -180,7 +181,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         loadButton.addActionListener(this);
     }
 
-    // EFFECTS: selects a workout and displays its exercises in right panel of JFrame window
+    // EFFECTS: selects workout and displays its exercises
     public void selectionActionListener() {
         workoutJList.getSelectionModel().addListSelectionListener(e -> {
             workoutJList.getSelectedValue();
@@ -219,21 +220,26 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         switch (actionEvent.getActionCommand()) {
             case "set level" :
                 addWorkoutLevelAction();
+
                 break;
             case "add workout":
                 addWorkoutAction();
+
                 break;
             case "add exercise":
                 workoutJList.getSelectionModel().addListSelectionListener(e -> {
                     workoutJList.getSelectedValue();
                 });
                 addExerciseAction();
+
                 break;
             case "save":
                 saveAction();
+
                 break;
             case "load":
                 loadAction();
+
                 break;
         }
     }
