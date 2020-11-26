@@ -1,7 +1,6 @@
 package ui;
 
 import exception.InvalidLevelException;
-import gui.WorkoutManagerGUI;
 
 import java.io.FileNotFoundException;
 

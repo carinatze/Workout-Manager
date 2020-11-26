@@ -222,18 +222,15 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
                 break;
             case "add workout":
                 addWorkoutAction();
-
                 break;
             case "add exercise":
                 workoutJList.getSelectionModel().addListSelectionListener(e -> {
                     workoutJList.getSelectedValue();
                 });
                 addExerciseAction();
-
                 break;
             case "save":
                 saveAction();
-
                 break;
             case "load":
                 loadAction();
