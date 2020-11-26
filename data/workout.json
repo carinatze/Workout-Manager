@@ -19,9 +19,17 @@
             "name": "w1"
         },
         {
-            "exercises": [],
+            "exercises": [{
+                "reps": 5,
+                "exercise": "e5"
+            }],
             "level": "intermediate",
             "name": "w2"
+        },
+        {
+            "exercises": [],
+            "level": "beginner",
+            "name": "w3"
         }
     ],
     "name": "My workout collection"

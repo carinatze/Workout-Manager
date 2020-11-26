@@ -59,7 +59,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
         setUpButtons();
         setUpLabels();
         setUpLayout();
-        
+
         selectionActionListener();
         setsActionCommands();
         addActionListeners();
@@ -184,14 +184,27 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     // EFFECTS: selects workout and displays its exercises
     public void selectionActionListener() {
         workoutJList.getSelectionModel().addListSelectionListener(e -> {
-            workoutJList.getSelectedValue();
-            Workout w = collection.getWorkout(workoutJList.getSelectedValue());
-            exerciseModel.removeAllElements();
-            for (int i = 0; i < w.getExercises().size(); i++) {
-                String exerciseString = w.getExercises().get(i).getReps() + " "
-                        + w.getExercises().get(i).getExerciseName();
-                exerciseModel.addElement(exerciseString);
+            String selected = workoutJList.getSelectedValue();
+            int end = selected.indexOf(":");
+            if (end != -1) {
+                String subString = selected.substring(0,end);
+                Workout w = collection.getWorkout(subString);
+                exerciseModel.removeAllElements();
+                for (int i = 0; i < w.getExercises().size(); i++) {
+                    String exerciseString = w.getExercises().get(i).getReps() + " "
+                            + w.getExercises().get(i).getExerciseName();
+                    exerciseModel.addElement(exerciseString);
+                }
+            } else {
+                Workout w = collection.getWorkout(selected);
+                exerciseModel.removeAllElements();
+                for (int i = 0; i < w.getExercises().size(); i++) {
+                    String exerciseString = w.getExercises().get(i).getReps() + " "
+                            + w.getExercises().get(i).getExerciseName();
+                    exerciseModel.addElement(exerciseString);
+                }
             }
+
         });
     }
 
