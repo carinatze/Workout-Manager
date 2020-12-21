@@ -49,7 +49,7 @@ public class WorkoutManagerGUI extends JFrame implements ActionListener {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
-    // Workout Instance Data:
+    // WorkoutCollection Instance Data:
     private WorkoutCollection collection;
 
     public WorkoutManagerGUI() {
